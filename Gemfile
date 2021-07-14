@@ -73,3 +73,5 @@ gem "font-awesome-sass", "~> 5.13"
 gem "payjp"
 gem "pry-byebug"
 gem "dotenv-rails"
+
+#test
