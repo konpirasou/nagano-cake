@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   devise_for :customers
   devise_for :admins
-  root :to => "homes#top"
-  get "about" => "homes#about"
-  resources :products, only: [:index, :show]
-  resources :cart_products, only: [:index, :update, :destroy]
-  delete "cart_products" => "cart_products#destroy_all"
-  resources :customers, only: [:show, :edit, :update]
-  get "customers" => "customers#cancel"
-  patch "customers" => "customers#unsubscribe"
-  resources :orders, only: [:index, :show, :new, :create]
-  post "orders" => "orders#confirm"
-  get "orders" => "orders#complete"
-  resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-  get "search" => "searches#search"
+  root :to => "public/homes#top"
+  get "about" => "public/homes#about"
+  resources :products, only: [:index, :show], controller: "public/products"
+  resources :cart_products, only: [:index, :update, :destroy], controller: "public/cart_products"
+  delete "cart_products" => "public/cart_products#destroy_all"
+  resources :customers, only: [:show, :edit, :update], controller: "public/customers"
+  get "customers" => "public/customers#cancel"
+  patch "customers" => "public/customers#unsubscribe"
+  resources :orders, only: [:index, :show, :new, :create], controller: "public/orders"
+  post "orders" => "public/orders#confirm"
+  get "orders" => "public/orders#complete"
+  resources :addresses, only: [:index, :create, :edit, :update, :destroy], controller: "public/addresses"
+  get "search" => "public/searches#search"
 
   namespace :admin do
     root :to => "orders#index"
