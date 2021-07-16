@@ -60,3 +60,11 @@
 .pagination {
   justify-content: center;
 }
+
+// エラーメッセージによるフォームのレイアウト崩れを防ぐ
+.field_with_errors {
+  display: contents;
+  input {
+    @extend .is-invalid;
+  }
+}

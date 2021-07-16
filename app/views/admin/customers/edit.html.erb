@@ -1,2 +1,61 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<h3 class="bg-light p-3 my-4">
+  <%= "#{@customer.first_name}#{@customer.last_name}さんの会員情報編集" %>
+</h3>
+<div class="col-sm-12 mx-auto">
+  <%= form_with model: @customer, url: admin_customer_path(@customer.id), class: 'form-horizontal', local: true do |f| %>
+    <%= render "public/customers/shared/error_messages", resource: @customer %>
+    <div class="field form-group row">
+      <p class="col-sm-3 control-label">会員ID</p>
+      <p><%= @customer.id %></p>
+    </div>
+
+    <div class="field form-group row">
+      <%= f.label :"氏名", class: "col-sm-3 control-label" %>
+      <%= f.text_field :first_name, autofocus: true, class: "col-sm-2" %>
+      <%= f.text_field :last_name, autofocus: true, class: "col-sm-2 ml-5" %>
+    </div>
+
+    <div class="field form-group row">
+      <%= f.label :"フリガナ", class: "col-sm-3 control-label" %>
+      <%= f.text_field :first_name_kana, autofocus: true, class: "col-sm-2" %>
+      <%= f.text_field :last_name_kana, autofocus: true, class: "col-sm-2 ml-5" %>
+    </div>
+
+    <div class="field form-group row">
+      <%= f.label :"郵便番号", class: "col-sm-3 control-label" %>
+      <%= f.text_field :postal_code, autofocus: true, class: "col-sm-2" %>
+    </div>
+
+    <div class="field form-group row">
+      <%= f.label :"住所", class: "col-sm-3 control-label" %>
+      <%= f.text_field :address, autofocus: true, class: "col-sm-6" %>
+    </div>
+
+    <div class="field form-group row">
+      <%= f.label :"電話番号", class: "col-sm-3 control-label" %>
+      <%= f.text_field :telephone_number, autofocus: true, class: "col-sm-2" %>
+    </div>
+
+    <div class="field form-group row">
+      <%= f.label :"メールアドレス", class: "col-sm-3 control-label" %>
+      <%= f.text_field :email, autofocus: true, class: "col-sm-2" %>
+    </div>
+
+    <div class="field form-group row">
+      <%= f.label :"会員ステータス", class: "col-sm-3 control-label" %>
+      <div>
+        <%= f.radio_button :is_deleted, :false, include_hidden: false %>
+        <%= f.label :"有効", class: "control-label" %>
+      </div>
+      <div class="ml-3">
+        <%= f.radio_button :is_deleted, :true, include_hidden: true %>
+        <%= f.label :"退会", class: "control-label" %>
+      </div>
+    </div>
+
+    <div class="actions row">
+      <%= f.submit "変更を保存", class: "btn btn-success col-sm-2 offset-sm-3 p-2 mt-3" %>
+    </div>
+
+  <% end %>
+</div>
