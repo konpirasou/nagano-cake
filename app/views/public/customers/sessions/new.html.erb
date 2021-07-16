@@ -1,32 +1,28 @@
-<div class="container">
-  <div class="row">
-    <h3 class="bg-light p-3 my-4">ログイン</h3>
-    <div class="col-sm-12 mx-auto pb-5">
-      <h5 class="bg-light p-3 my-4 col-sm-4 text-center">会員の方はこちらからログイン</h5>
+<h3 class="bg-light p-3 my-4">ログイン</h3>
+<div class="col-sm-12 mx-auto pb-5">
+  <h5 class="bg-light p-3 my-4 col-sm-4 text-center">会員の方はこちらからログイン</h5>
 
-      <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+  <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
 
-        <div class="field form-group row justify-content-center">
-          <%= f.label :"メールアドレス", class: "col-sm-2 control-label" %>
-          <%= f.email_field :email, placeholder: "sample@example.com", autofocus: true, autocomplete: "email", class: "col-sm-6" %>
-        </div>
-
-        <div class="field form-group row justify-content-center">
-          <%= f.label :"パスワード", class: "col-sm-2 control-label" %><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: "col-sm-6" %>
-        </div>
-
-        <div class="actions row">
-          <%= f.submit "ログイン", class: "btn btn-primary btn-block col-sm-3 offset-sm-4" %>
-        </div>
-      <% end %>
+    <div class="field form-group row justify-content-center">
+      <%= f.label :"メールアドレス", class: "col-sm-2 control-label" %>
+      <%= f.email_field :email, placeholder: "sample@example.com", autofocus: true, autocomplete: "email", class: "col-sm-6" %>
     </div>
 
-    <div class="col-sm-12 mx-auto ">
-      <h5 class="bg-light p-3 my-4 col-sm-4 text-center">会員登録がお済みでない方</h5>
-      <div class="col-sm-12 offset-sm-1">
-        <%= render "public/customers/shared/links" %>
-      </div>
+    <div class="field form-group row justify-content-center">
+      <%= f.label :"パスワード", class: "col-sm-2 control-label" %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "col-sm-6" %>
     </div>
+
+    <div class="actions row">
+      <%= f.submit "ログイン", class: "btn btn-primary btn-block col-sm-3 offset-sm-4" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-sm-12 mx-auto ">
+  <h5 class="bg-light p-3 my-4 col-sm-4 text-center">会員登録がお済みでない方</h5>
+  <div class="col-sm-12 offset-sm-1">
+    <%= render "public/customers/shared/links" %>
   </div>
 </div>
