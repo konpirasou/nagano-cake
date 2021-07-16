@@ -1,2 +1,51 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="col-md-6">
+  <h3 class="bg-light p-3 my-4 d-inline-block">
+    <%= "#{@customer.first_name}#{@customer.last_name}さんの会員詳細" %>
+  </h3>
+
+  <table class="table table-borderless">
+    <tr>
+      <td>会員ID</td>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <td>氏名</td>
+      <td><%= "#{@customer.first_name}　#{@customer.last_name}" %></td>
+    </tr>
+    <tr>
+      <td>フリガナ</td>
+      <td><%= "#{@customer.first_name_kana}　#{@customer.last_name_kana}" %></td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
+
+    <tr>
+      <td>会員ステータス</td>
+      <% if @customer.is_deleted == false %>
+        <td class="text-success">有効</td>
+      <% else %>
+        <td class="text-secondary">退会</td>
+      <% end %>
+    </tr>
+  </table>
+  <div class="text-center">
+  <%= link_to "編集する", edit_admin_customer_path(@customer.id), class:"btn btn-success ml-5" %>
+  <%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary ml-5" %>
+  </div>
+
+</div>
+
