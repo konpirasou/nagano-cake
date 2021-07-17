@@ -1,9 +1,9 @@
 <div class="col-10 mt-5">
-  <h5>ジャンル・機能追加</h5>
-     <%= form_with model: @genre, url: '/genre',class: "form-inline mt-4", local:true do |f| %>
+  <h5>ジャンル一覧・追加</h5>
+     <%= form_with model: @genre, url: admin_genres_path, method: :post, class: "form-inline mt-4", local:true do |f| %>
        <div class="form-group">
          <label for="exampleInputTitle" class="mr-3">ジャンル名</label>
-           <%= f.text_field :genre %>
+           <%= f.text_field :name %>
        </div>
            <%= f.submit '新規登録', class: "btn btn-success ml-3" %>
      <% end %>
@@ -16,14 +16,12 @@
       </tr>
      </thead>
      <tbody>
+       <% @genres.each do |genre| %>
       <tr>
-        <th>ケーキ</th>
-        <th><%= link_to "編集する", edit_admin_genre_path, class: "btn btn-success ml-1" %></th>
+        <th><%= genre.name %></th>
+        <th><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success ml-1" %></th>
       </tr>
-          <tr>
-        <th>ケーキ</th>
-        <th><%= link_to "編集する", class: "btn btn-success ml-1" %></th>
-      </tr>
+      <% end %>
    </tbody>
   </table>
  </div>

@@ -10,7 +10,7 @@
                 <% if customer_signed_in? %>
                   <li class="nav-item">
                     <button type="button" class="mr-5 btn btn-outline-secondary">
-                      <%= link_to 'マイページ', customer_path(customer.id) %>
+                      <%= link_to 'マイページ', customers_my_page_path(current_customer) %>
                     </button>
                   </li>
                   <li class="nav-item">
