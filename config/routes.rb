@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show], controller: "public/products"
   resources :cart_products, only: [:index, :update, :destroy], controller: "public/cart_products"
   delete "cart_products" => "public/cart_products#destroy_all"
-  resources :customers, only: [:edit, :update], controller: "public/customers" #showを削除
+  resources :customers, only: [:update], controller: "public/customers" #showを削除
   get "customers/my_page" => "public/customers#show"                           #showアクションのurlをmy_pageに変更
-  get "customers" => "public/customers#cancel"
-  patch "customers" => "public/customers#unsubscribe"
+  get "customers/my_page/edit" => "public/customers#edit"
+  get "customers/my_page/cancel" => "public/customers#cancel"
+  patch "customers/my_page/cancel" => "public/customers#unsubscribe"
   resources :orders, only: [:index, :show, :new, :create], controller: "public/orders"
   post "orders" => "public/orders#confirm"
   get "orders" => "public/orders#complete"
