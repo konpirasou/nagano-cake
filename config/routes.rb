@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   root :to => "public/homes#top"
   get "about" => "public/homes#about"
   resources :products, only: [:index, :show], controller: "public/products"
-  resources :cart_products, only: [:index, :update, :destroy], controller: "public/cart_products"
+  resources :cart_products, only: [:index, :create, :update, :destroy], controller: "public/cart_products"
   delete "cart_products" => "public/cart_products#destroy_all"
-  resources :customers, only: [:update], controller: "public/customers" #showを削除
-  get "customers/my_page" => "public/customers#show"                           #showアクションのurlをmy_pageに変更
+  resources :customers, only: [:update], controller: "public/customers"
+  get "customers/my_page" => "public/customers#show"
   get "customers/my_page/edit" => "public/customers#edit"
   get "customers/my_page/cancel" => "public/customers#cancel"
   patch "customers/my_page/cancel" => "public/customers#unsubscribe"

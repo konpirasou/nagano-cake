@@ -16,7 +16,7 @@
       <h4 class="mt-3 mb-3"><%= @product.name %></h4>
       <p><%= @product.introduction %></p>
       <h5 class="mt-5">¥<%= @product.price %>(税込)</h5>
-          <%= form_with model: CartProduct, url: cart_product_path, class: "p-4" do |f| %>
+          <%= form_with model: CartProduct, url: cart_products_path, class: "p-4" do |f| %>
             <%= f.select :amount, [['1', 1], ['2', 2],['3', 3],['4', 4],['5', 5]], include_blank: "個数選択" %>
             <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
           <% end %>

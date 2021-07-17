@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception #CSRF対策
   before_action :configure_permitted_parameters, if: :devise_controller?
+  helper_method :current_cart
 
     def after_sign_in_path_for(resource)
       case resource
@@ -12,6 +14,15 @@ class ApplicationController < ActionController::Base
 
     def after_sign_out_path_for(resource)
       root_path
+    end
+
+    def current_cart
+      if session[:customer_id]
+        @cart = CartProduct.find(session[:customer_id])
+      else
+        @cart = CartProduct.create
+        session[:customer_id] = @cart.id
+      end
     end
 
   protected
