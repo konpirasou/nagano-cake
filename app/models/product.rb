@@ -6,4 +6,8 @@ class Product < ApplicationRecord
   has_many    :order, through: :order_products,	source: :order
   belongs_to  :genre
   attachment :image
+
+  def add_tax_price
+      (self.price * 1.10).round
+  end
 end
