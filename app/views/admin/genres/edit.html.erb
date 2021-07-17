@@ -1,2 +1,10 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="col-10 mt-5">
+  <h5>ジャンル編集</h5>
+     <%= form_with model: @genre, url: admin_genre_path, method: :patch, class: "form-inline mt-4", local:true do |f| %>
+       <div class="form-group">
+         <label for="exampleInputTitle" class="mr-3">ジャンル名</label>
+           <%= f.text_field :name %>
+       </div>
+           <%= f.submit "変更を保存", class: "btn btn-success ml-3" %>
+     <% end %>
+</div>
