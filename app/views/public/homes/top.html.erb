@@ -3,14 +3,9 @@
       <h5 class="border border-secondary mb-0 p-2 text-center">ジャンル検索</h5>
       <div class="border border-secondary">
         <ul class="genre-list">
-          <li>ジャンル名</li>
-          <li>ジャンル名</li>
-          <li>ジャンル名</li>
-          <li>ジャンル名</li>
-          <li>ジャンル名</li>
-          <li>ジャンル名</li>
-          <li>ジャンル名</li>
-          <li>ジャンル名</li>
+          <% @genres.each do |genre| %>
+          <li><%= genre.name %></li>
+          <% end %>
         </ul>
       </div>
     </div>
