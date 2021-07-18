@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "about" => "public/homes#about"
   resources :products, only: [:index, :show], controller: "public/products"
   resources :cart_products, only: [:index, :create, :update, :destroy], controller: "public/cart_products"
-  delete "cart_products" => "public/cart_products#destroy_all"
+  delete "cart_products" => "public/cart_products#destroy_all", as: 'destroy_all' #名前付きルートを記載
   resources :customers, only: [:update], controller: "public/customers"
   get "customers/my_page" => "public/customers#show"
   get "customers/my_page/edit" => "public/customers#edit"
