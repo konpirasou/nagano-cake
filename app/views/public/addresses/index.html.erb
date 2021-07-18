@@ -30,13 +30,12 @@
   </tr>
   <% @addresses.each do |address| %>
   <tr>
-      <td><%= address.postal_code %></td>
-      <td><%= address.address %></td>
-      <td><%= address.name %></td>
-      <td class="text-center">
-        <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-sm btn-success" %>
-        <%= link_to "削除する", address_path(address.id), method: :delete, class:"btn btn-sm btn-danger" %>
-      </td>
+    <td><%= address.postal_code %></td>
+    <td><%= address.address %></td>
+    <td><%= address.name %></td>
+    <td class="text-center">
+      <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-sm btn-success" %>
+      <%= link_to "削除する", address_path(address.id), method: :delete, class:"btn btn-sm btn-danger" %>      </td>
   </tr>
   <% end %>
 </table>
