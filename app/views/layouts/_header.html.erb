@@ -28,31 +28,45 @@
                       <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
                     </button>
                   </li>
+                  <li class="search-form nav-item mt-4">
+                    <%= form_with url: search_path, method: :get, local: true do |f| %>
+                      <%= f.text_field :keyword, placeholder: "Search" %>
+                      <%= f.hidden_field :model, :value => "products" %>
+                      <%= f.submit "検索", class:"btn btn-sm btn-primary" %>
+                    <% end %>
+                  </li>
                 <% elsif admin_signed_in? %>
                     <li class="nav-item">
-                      <button type="button" class="mr-5 btn btn-outline-secondary">
+                      <button type="button" class="mr-3 btn btn-outline-secondary">
                         <%= link_to "商品一覧", admin_products_path, class: 'nav-link text-dark' %>
                       </button>
                     </li>
                     <li class="nav-item">
-                      <button type="button" class="mr-5 btn btn-outline-secondary">
+                      <button type="button" class="mr-3 btn btn-outline-secondary">
                         <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
                       </button>
                     </li>
                     <li class="nav-item">
-                      <button type="button" class="mr-5 btn btn-outline-secondary">
+                      <button type="button" class="mr-3 btn btn-outline-secondary">
                         <%= link_to "注文履歴一覧", admin_orders_path, class: 'nav-link text-dark' %>
                       </button>
                     </li>
                     <li class="nav-item">
-                      <button type="button" class="mr-5 btn btn-outline-secondary">
+                      <button type="button" class="mr-3 btn btn-outline-secondary">
                         <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
                       </button>
                     </li>
                     <li class="nav-item">
-                      <button type="button" class="mr-5 btn btn-outline-secondary">
-                        <%= link_to "ログアウト", destroy_admin_session_path, class: 'nav-link text-dark' %>
+                      <button type="button" class="mr-3 btn btn-outline-secondary">
+                        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
                       </button>
+                    </li>
+                    <li class="search-form nav-item">
+                      <%= form_with url: search_path, method: :get, local: true do |f| %>
+                        <%= f.select :model, options_for_select({"会員" => "customers", "商品" => "products"}) %></br>
+                        <%= f.text_field :keyword, placeholder: "Search", class:"form-control-sm form-inline" %>
+                        <%= f.submit "検索", class:"btn btn-sm btn-primary form-inline" %>
+                      <% end %>
                     </li>
                 <% else %>
                     <li class="nav-item">
@@ -74,6 +88,13 @@
                       <button type="button" class="mr-5 btn btn-outline-secondary">
                         <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
                       </button>
+                    </li>
+                    <li class="search-form nav-item mt-4">
+                      <%= form_with url: search_path, method: :get, local: true do |f| %>
+                        <%= f.text_field :keyword, placeholder: "Search" %>
+                        <%= f.hidden_field :model, :value => "products" %>
+                        <%= f.submit "検索", class:"btn btn-sm btn-primary" %>
+                      <% end %>
                     </li>
                 <% end %>
             </ul>
