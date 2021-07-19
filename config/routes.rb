@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   get "customers/my_page/edit" => "public/customers#edit"
   get "customers/my_page/cancel" => "public/customers#cancel"
   patch "customers/my_page/cancel" => "public/customers#unsubscribe"
+  get "orders/confirm" => "public/orders#confirm"
+  get "orders/complete" => "public/orders#complete"
   resources :orders, only: [:index, :show, :new, :create], controller: "public/orders"
-  post "orders" => "public/orders#confirm"
-  get "orders" => "public/orders#complete"
   resources :addresses, only: [:index, :create, :edit, :update, :destroy], controller: "public/addresses"
   get "search" => "public/searches#search"
 
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
     resources :genres, only: [:index, :create, :edit, :update]
-    patch "order_products" => "order_products#update"
+    resources :order_products, only: [:update]
     get "search" => "searches#search"
   end
 end
