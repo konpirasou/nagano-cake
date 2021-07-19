@@ -2,18 +2,26 @@ class Public::CartProductsController < ApplicationController
 
   before_action :authenticate_customer!
 
-
   def index
-    @products = current_customer.cart_products
-    # @cart_products = current_customer.cart_products
+    @cart_products = current_customer.cart_products
+    @total_price = 0
+    @cart_products.each do |cart_product|
+      @total_price += (cart_product.product.add_tax_price * cart_product.amount)
+    end
   end
 
   def create
-
-
-    @cart_product.amount += params[:amount].to_i
-    @cart_product.save
-    redirect_to cart_products_path
+    if  cart_item = current_customer.cart_products.find_by(product_id: params[:cart_product][:product_id])
+      cart_item.amount += params[:cart_product][:amount].to_i
+      cart_item.save
+      flash[:notice] = "アイテムの追加に成功しました。"
+      redirect_to cart_products_path
+    else
+      @cart_product = current_customer.cart_products.new(cart_product_params)
+      @cart_product.save
+      flash[:notice] = "新しいアイテムが追加されました。"
+      redirect_to cart_products_path
+    end
   end
 
   def update
@@ -23,16 +31,21 @@ class Public::CartProductsController < ApplicationController
   end
 
   def destroy
+    @cart_product = CartProduct.find(params[:id])
     @cart_product.destroy
-    redirect_to current_cart
+    redirect_to cart_products_path
   end
 
   def destroy_all
-    @cart_products = current_cart.cart_products
+    @cart_products = current_customer.cart_products
     @cart_products.destroy_all
     redirect_to cart_products_path, notice: "商品を全て削除しました。"
   end
 
+  private
 
+    def cart_product_params
+      params.require(:cart_product).permit(:amount, :product_id)
+    end
 
 end

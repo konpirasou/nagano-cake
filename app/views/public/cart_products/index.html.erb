@@ -1,7 +1,9 @@
 <h4 class="bg-light p-3 my-5">ショッピングカート</h4>
+
 <div class="ml-auto">
-  <%= link_to "カートを空にする", destroy_all_path, class: "btn btn-danger m-5 block-right" %>
+  <%= link_to "カートを空にする", destroy_all_path, method: :delete, class: "btn btn-danger m-5 block-right" %>
 </div>
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -12,22 +14,22 @@
       <th scope="col"></th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <% @products.each do |product| %>
-        <td><%= attachment_image_tag product.product, :image, :fill, 70, 45, class: "mr-3" %><%= product.product.name %></td>
-        <td><%= product.product.price %>(<%= product.product.add_tax_price.to_s(:delimited) %>)</td>
+    <% @cart_products.each do |cart_product| %>
+    <tbody>
+      <tr>
+        <td><%= attachment_image_tag cart_product.product, :image, :fill, 70, 45, class: "mr-3" %><%= cart_product.product.name %></td>
+        <td><%= cart_product.product.price %>(<%= cart_product.product.add_tax_price.to_s(:delimited) %>)</td>
         <td>
-           <%= form_with model: product, url: cart_product_path(product), method: :patch, local: true do |f| %>
-              <%= f.number_field :amount, value: product.amount %>
+           <%= form_with model: cart_product, url: cart_product_path(cart_product), method: :patch, local: true do |f| %>
+              <%= f.number_field :amount, in: 1..5, value: cart_product.amount %>
               <%= f.submit "変更", class: "btn btn-info" %>
            <% end %>
         </td>
-        <td><%= product.product.price %></td>
-        <td><%= link_to "削除する", cart_product_path(product.product.id), method: :delete, class: "btn btn-danger m-6" %></td>
-      <% end %>
-    </tr>
-  </tbody>
+        <td><%= cart_product.product.add_tax_price * cart_product.amount %></td>
+        <td><%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, class: "btn btn-danger m-6" %></td>
+   　  </tr>
+    <% end %>
+ </tbody>
 </table>
 
 <div class="col-8">
@@ -37,10 +39,9 @@
 <table class="table table-bordered text-center col-4 ml-auto">
   <tr>
     <th class>合計金額</th>
-    <td><%= %></td>
+    <td><%= @total_price %></td>
   </tr>
 </table>
-
 
 <div class="col-12 text-center">
   <%= link_to "情報入力にすすむ", root_path, class: "btn btn-success m-5 p-3 block-right" %>
