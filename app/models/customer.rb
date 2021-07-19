@@ -21,5 +21,12 @@ class Customer < ApplicationRecord
 
   paginates_per 10
 
+  def self.search(model,keyword)
+    if model == "customers" && keyword
+      where(["last_name like? OR first_name like? OR email like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+    else
+      all
+    end
+  end
 
 end

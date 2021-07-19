@@ -10,4 +10,13 @@ class Product < ApplicationRecord
   def add_tax_price
       (self.price * 1.10).round
   end
+
+  def self.search(model,keyword)
+    if model == "products" && keyword
+      where(["name like? OR introduction like?", "%#{keyword}%", "%#{keyword}%"])
+    else
+      all
+    end
+  end
+
 end
