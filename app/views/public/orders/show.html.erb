@@ -19,11 +19,11 @@
         </tr>
         <tr>
           <th class="table-active align-middle">支払い方法</th>
-          <td class="align-middle"><%= Order.payment_methods[@order.payment_method] %></td>
+          <td class="align-middle"><%= @order.payment_method %></td>
         </tr>
         <tr>
           <th class="table-active align-middle">ステータス</th>
-          <td class="align-middle"><%= Order.statuses[@order.status] %></td>
+          <td class="align-middle"><%= @order.status %></td>
         </tr>
       </table>
     </div>

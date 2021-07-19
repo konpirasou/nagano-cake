@@ -25,7 +25,7 @@
           <% end %>
         </td>
         <td class="align-middle"><b><%= "#{order.total_payment.to_s(:delimited)}円" %></b></td>
-        <td class="align-middle"><b><%= Order.statuses[order.status] %></b></td>
+        <td class="align-middle"><b><%= order.status %></b></td>
         <td class="align-middle text-center"><%= link_to "表示する", order_path(order.id), local: :true, class: "btn btn-primary" %> </td>
    　  </tr>
     <% end %>
