@@ -26,6 +26,7 @@ class Admin::OrdersController < ApplicationController
 		redirect_to admin_order_path(@order), notice: "注文ステータスを変更しました！"
   end
 
+	
   private
 
   	def order_params
