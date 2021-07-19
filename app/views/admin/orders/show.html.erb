@@ -1,2 +1,86 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<h3 class="bg-light p-3 my-4">注文履歴詳細</h3>
+<div class="col-sm-12">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div>
+        <label>購入者</label>
+        <%= link_to admin_orders_path(order_sort: @order.customer_id) do %>
+          <%= @order.name %>
+        <% end %>
+      </div>
+
+      <div>
+        <label>注文日</label>
+        <%= @order.created_at.strftime('%Y/%m/%d') %>
+      </div>
+
+      <div>
+        <label>配送先</label>
+        〒<%= @order.postal_code %><%= @order.address %>
+      </div>
+
+      <div>
+        <label>支払い方法</label>
+        <%= @order.payment_method %>
+      </div>
+
+      <div class="form-inline">
+        <label>注文ステータス</label>
+        <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+          <%= f.select :status, Order.statuses.keys.to_a, {} %>
+          <%= f.submit "変更", class: "btn btn-info" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-left">
+    <div class="col-md-12">
+      <table class=" table col-sm-9">
+        <thead>
+          <tr class="bg-light">
+            <th class="col-sm-3">商品名</th>
+            <th class="col-sm-2">単価（税込）</th>
+            <th class="col-sm-1">数量</th>
+            <th class="col-sm-1">小計</th>
+            <th class="col-sm-4">制作ステータス</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @order_products.each do |order_product| %>
+            <tr>
+              <td class="col-sm-3"><%= order_product.product.name %></td>
+              <td class="col-sm-2"><%= order_product.product.add_tax_price.to_s(:delimited) %></td>
+              <td class="col-sm-1"><%= order_product.amount %></td>
+              <td class="col-sm-1"><%= order_product.product.add_tax_price * order_product.amount %></td>
+              <td class="col-sm-4">
+                <%= form_with model: order_product, url: admin_order_product_path(order_product), method: :patch, local: true do |f| %>
+                  <%= f.select :product_status, OrderProduct.product_statuses.keys.to_a, {} %>
+                  <%= f.submit "変更", class: "btn btn-info" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-3">
+      <div>
+        <label>商品合計</label>
+        <%= @total_price.to_s(:delimited) %>円
+      </div>
+
+      <div>
+        <label>送料</label>
+        <%= @order.shipping_cost %>円
+      </div>
+
+      <div>
+        <label>請求金額合計</label>
+        <%= (@total_price + @order.shipping_cost).to_s(:delimited) %>円
+      </div>
+    </div>
+  </div>
+</div>
