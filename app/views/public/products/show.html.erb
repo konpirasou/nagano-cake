@@ -9,15 +9,17 @@
       </div>
     </div>
     <div class="col-4 mt-5">
-      <%= image_tag('eclair-3366430_640.jpg', size: '320x240') %>
+      <%= attachment_image_tag @product, :image, :fill, 320, 240 %>
     </div>
 
     <div class="col-5 mt-5">
       <h4 class="mt-3 mb-3"><%= @product.name %></h4>
       <p><%= @product.introduction %></p>
-      <h5 class="mt-5">¥<%= @product.price %>(税込)</h5>
-          <%= form_with model: CartProduct, url: cart_product_path, class: "p-4" do |f| %>
-            <%= f.select :amount, [['1', 1], ['2', 2],['3', 3],['4', 4],['5', 5]], include_blank: "個数選択" %>
-            <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
-          <% end %>
+         <h4><%= @product.add_tax_price.to_s(:delimited) %>(税込)</h4>
+
+         <%= form_with model: @cart_product, url: cart_products_path, class: "p-4" do |f| %>
+           <%= f.select :amount, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], include_blank: "個数選択" %>
+           <%= f.hidden_field :product_id, :value => @product.id %>
+           <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
+         <% end %>
     </div>
