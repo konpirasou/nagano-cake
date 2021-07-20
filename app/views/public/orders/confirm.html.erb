@@ -10,15 +10,15 @@
         <th scope="col">小計</th>
       </tr>
     </thead>
-    <%# @cart_products.each do |cart_product| %>
+    <% @cart_products.each do |cart_product| %>
     <tbody>
       <tr>
-        <td><%# attachment_image_tag cart_product.product, :image, :fill, 70, 45, class: "mr-3" %><%# 商品名 %></td>
-        <td><%# 単価 %></td>
-        <td><%# 数量 %></td>
-        <td><%# 小計 %></td>
+        <td><%= attachment_image_tag cart_product.product, :image, :fill, 70, 45, class: "mr-3" %><%= cart_product.product.name %></td>
+        <td><%= cart_product.product.add_tax_price.to_s(:delimited) %></td>
+        <td><%= cart_product.amount %></td>
+        <td><%= cart_product.product.add_tax_price * cart_product.amount %></td>
    　  </tr>
-    <%# end %>
+    <% end %>
     </tbody>
   </table>
 </div>
@@ -42,10 +42,10 @@
 </div>
 
   <h5 class="col-3">支払い方法</h5>
-  <p class="col-3">支払い方法</p>
+  <p class="col-3"><%= @order.payment_method %></p>
   <div class="col-6"></div>
   <h5 class="col-3">お届け先</h5>
-  <p class="col-3">お届け先</p>
+  <p class="col-3"><%= "#{@order.postal_code} #{@order.address} #{@order.name}" %></p>
 
 <div class="col-12 text-center">
   <%= link_to "注文を確定する", root_path, class: "btn btn-success m-4 p-3 block-right" %>

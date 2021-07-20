@@ -1,32 +1,32 @@
 <div class="col-12">
   <h4 class="bg-light p-3 my-4 d-inline-block">注文情報入力</h4>
-  <%= form_with model: @order, url: orders_path, method: :post, id: 'edit_product', class: 'edit_product form-horizontal', local: true do |f| %>
-    
+  <%= form_with model: @order, url: orders_confirm_path, method: :post, id: 'edit_product', class: 'edit_product form-horizontal', local: true do |f| %>
+
     <h5 class="col-12">支払方法</h5>
     <div class="form-check ml-3 mt-4">
       <div>
-        <%= f.radio_button :payment_method, 0, checked: "checked" %>
+        <%= f.radio_button :payment_method, "クレジットカード", checked: "checked" %>
         <%= f.label :payment_method, "クレジットカード" %>
       </div>
       <div>
-        <%= f.radio_button :payment_method, 1 %>
+        <%= f.radio_button :payment_method, "銀行振込" %>
         <%= f.label :payment_method, "銀行振込" %>
       </div>
     </div>
-      
+
     <h5 class="col-12">お届け先</h5>
     <div class="form-check ml-3 mt-4">
       <div>
-        <%= f.radio_button :address_select, 0 %>
+        <%= f.radio_button :address_select, :"0", checked: "checked"%>
         <%= f.label :address, "ご自身の住所"%>
       </div>
-      <div class="ml-3">〒1500041 東京都渋谷区神南1丁目19−11 パークウェースクエア2 4階</br>
-            山田花子
+      <div class="ml-3">
+        <%= "〒#{current_customer.postal_code}#{current_customer.address}""#{current_customer.first_name}#{current_customer.last_name}" %>
       </div>
     </div>
     <div class="form-check ml-3 mt-4">
       <div>
-        <%= f.radio_button :address_select, 1 %>
+        <%= f.radio_button :address_select, :"1" %>
         <%= f.label :address, "登録済住所から選択" %>
       </div>
       <div class="field form-group row ml-3">
@@ -35,7 +35,7 @@
     </div>
     <div class="form-check ml-3 mt-4">
       <div>
-        <%= f.radio_button :address_select, 2 %>
+        <%= f.radio_button :address_select, :"2" %>
         <%= f.label :address, "新しいお届け先" %>
       </div>
       <div class="ml-3">
