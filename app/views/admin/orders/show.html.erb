@@ -16,7 +16,7 @@
 
       <div>
         <label>配送先</label>
-        〒<%= @order.postal_code %><%= @order.address %>
+        <%= "〒#{@order.postal_code}#{@order.address}" %>
       </div>
 
       <div>
