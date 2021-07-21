@@ -13,7 +13,10 @@
     <tbody>
       <% @cart_products.each do |cart_product| %>
       <tr>
-        <td><%= attachment_image_tag cart_product.product, :image, :fill, 70, 45, class: "mr-3" %></td>
+        <td>
+          <%= attachment_image_tag cart_product.product, :image, :fill, 70, 45, class: "mr-3" %>
+          <%= cart_product.product.name %>
+        </td>
         <td><%= cart_product.product.add_tax_price.to_s(:delimited) %></td>
         <td><%= cart_product.amount %></td>
         <td><%= (cart_product.product.add_tax_price * cart_product.amount).to_s(:delimited) %></td>
@@ -51,7 +54,16 @@
     <%= "#{@order.postal_code} #{@order.address}" %></br>
     <%= "#{@order.name}" %>
   </p>
+<%= form_with model: @order, url: orders_path, method: :post, class: 'edit_product form-horizontal', local: true do |f| %>
+  <%= f.hidden_field :customer_id, value: current_customer.id %>
+  <%= f.hidden_field :postal_code, value: @order.postal_code %>
+  <%= f.hidden_field :address, value: @order.address %>
+  <%= f.hidden_field :name, value: @order.name %>
+  <%= f.hidden_field :shipping_cost, value: @order.shipping_cost %>
+  <%= f.hidden_field :total_payment, value: @order.total_payment %>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.submit "注文を確定する", class: "btn btn-success m-4 p-2 block-right" %>
+<% end %>
 
-<div class="col-12 text-center">
-  <%= link_to "注文を確定する", orders_path(order: @order, cart_product: @cart_product), method: :post, class: "btn btn-success m-4 p-2 block-right" %>
-</div>
+
+
