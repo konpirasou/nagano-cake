@@ -12,13 +12,17 @@ class Public::OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
-    @addresses = current_customer.addresses
+    if current_customer.cart_products.present?
+      @order = Order.new
+      @addresses = current_customer.addresses
+    else
+      redirect_to cart_products_path, notice: "カート内に商品がありません。"
+    end
 
   end
 
   def confirm
-    @order = Order.new(order_params)
+    @order = Order.new(address_params)
     if params[:order][:payment] == "0"
       @order.payment_method = 0
     elsif params[:order][:payment] == "1"
@@ -35,7 +39,6 @@ class Public::OrdersController < ApplicationController
       @order.name = address.name
       @order.postal_code = address.postal_code
     elsif params[:order][:address_select] == "2"
-
     end
 
     @order.shipping_cost = 800
@@ -50,15 +53,15 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    # order = Order.new(params[:order])
-    # order_param = params[:cart_product]
-
-    # order_param.each do |param|
-    #   order_products = OrderProduct.new(product_id: param.product_id, order_id: @order.id, price: (param.product.add_tax_price * product.amount), amount: param.amount)
-    #   order_products.save
-    # end
-    # order.save
-
+    order = Order.new(order_params)
+    order.save
+    current_customer.cart_products.each do |product|
+      OrderProduct.create(product_id: product.product_id, order_id: order.id, price: (product.product.price * product.amount), amount: product.amount)
+    end
+    if order.save == true
+      current_customer.cart_products.destroy_all
+      redirect_to orders_complete_path
+    end
   end
 
   def complete
@@ -67,8 +70,12 @@ class Public::OrdersController < ApplicationController
 
 
   private
-  def order_params
+  def address_params
     params.require(:order).permit(:postal_code, :address, :name)
+  end
+
+  def order_params
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name , :shipping_cost, :total_payment)
   end
 
 end
