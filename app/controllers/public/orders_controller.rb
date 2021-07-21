@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @total_price = 0
     @order.order_products.each do |product|
-      @total_price += (product.add_tax_price * product.amount)
+      @total_price += (product.product.add_tax_price * product.amount)
     end
   end
 
@@ -22,7 +22,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new(address_params)
+    @order = Order.new(order_params)
     if params[:order][:payment] == "0"
       @order.payment_method = 0
     elsif params[:order][:payment] == "1"
@@ -70,12 +70,8 @@ class Public::OrdersController < ApplicationController
 
 
   private
-  def address_params
-    params.require(:order).permit(:postal_code, :address, :name)
-  end
-
   def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name , :shipping_cost, :total_payment)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name , :shipping_cost, :total_payment, :payment_method)
   end
 
 end

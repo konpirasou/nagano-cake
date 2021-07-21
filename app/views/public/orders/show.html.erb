@@ -60,9 +60,9 @@
         <% @order.order_products.each do |order_product| %>
         <tr>
           <td><%= order_product.product.name %></td>
-          <td><%= order_product.product.price.to_s(:delimited) %></td>
+          <td><%= order_product.product.add_tax_price.to_s(:delimited) %></td>
           <td><%= order_product.amount %></td>
-          <td><%= (order_product.product.price * order_product.amount).to_s(:delimited) %></td>
+          <td><%= (order_product.product.add_tax_price * order_product.amount).to_s(:delimited) %></td>
         </tr>
         <% end %>
       </table>
