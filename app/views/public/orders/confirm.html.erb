@@ -62,7 +62,20 @@
   <%= f.hidden_field :shipping_cost, value: @order.shipping_cost %>
   <%= f.hidden_field :total_payment, value: @order.total_payment %>
   <%= f.hidden_field :payment_method, value: @order.payment_method %>
-  <%= f.submit "注文を確定する", class: "btn btn-success m-4 p-2 block-right" %>
+  <% if @order.payment_method == "銀行振込" %>
+    <%= f.submit "注文を確定する", class: "btn btn-success m-4 p-2 block-right" %>
+  <% elsif @order.payment_method == "クレジットカード" %>
+    <script
+      type="text/javascript"
+      src="https://checkout.pay.jp/"
+      class="payjp-button"
+      data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
+      data-text="カード情報を入力する"
+      data-submit-text="注文を確定する">
+      <% f.submit %>
+    </script>
+  <% end %>
+
 <% end %>
 
 
