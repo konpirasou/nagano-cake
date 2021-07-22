@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  require "payjp"
+
   def index
     @orders = Order.where(customer_id: current_customer.id)
   end
@@ -58,16 +60,25 @@ class Public::OrdersController < ApplicationController
     current_customer.cart_products.each do |product|
       OrderProduct.create(product_id: product.product_id, order_id: order.id, price: (product.product.price * product.amount), amount: product.amount)
     end
+
+    if order.payment_method == "クレジットカード"
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      pay = Payjp::Charge.create(
+      amount: params[:order][:total_payment], # 決済する値段
+      card: params['payjp-token'], # フォームを送信すると作成・送信されてくるトークン
+      currency: 'jpy'
+      )
+    end
+
     if order.save == true
       current_customer.cart_products.destroy_all
       redirect_to orders_complete_path
     end
+
   end
 
   def complete
   end
-
-
 
   private
   def order_params
