@@ -4,11 +4,10 @@ class Admin::OrdersController < ApplicationController
 
   def index
     if params[:order_sort]
-      @orders = Order.where(customer_id: params[:order_sort])
+      @orders = Order.where(customer_id: params[:order_sort]).order(created_at: "DESC").page(params[:page]).per(10)
     else
-      @orders = Order.all
+      @orders = Order.all.order(created_at: "DESC").page(params[:page]).per(10)
     end
-    @order_page = Order.page(params[:page]).per(10)
   end
 
   def show
@@ -23,14 +22,15 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
+    @order.order_products.update(product_status: 1) if  @order.status == "入金確認"
 		redirect_to admin_order_path(@order), notice: "注文ステータスを変更しました！"
   end
 
-	
+
   private
 
-  	def order_params
-  	  params.require(:order).permit(:status)
-  	end
+	def order_params
+	  params.require(:order).permit(:status)
+	end
 
 end

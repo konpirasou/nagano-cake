@@ -29,4 +29,13 @@ class Customer < ApplicationRecord
     end
   end
 
+  # is_deleted==trueの場合、ログインさせない
+  def active_for_authentication?
+    super && !(is_deleted?)
+  end
+
+  def inactive_message
+    "既に退会済みです"
+  end
+
 end
