@@ -17,7 +17,13 @@ Genre.create!(name: "焼き菓子")
 Genre.create!(name: "キャンディ")
 
 Product.create!(genre_id: 1, name: "test", introduction: "test", price: 1000, is_active: true, image: File.open("app/assets/images/eclair-3366430_640.jpg"))
-Product.create!(genre_id: 1, name: "test2", introduction: "test2", price: 1000, is_active: true, image: File.open("app/assets/images/eclair-3366430_640.jpg"))
+Product.create!(genre_id: 1, name: "test2", introduction: "test2", price: 1000, is_active: true, image: File.open("app/assets/images/muffins-4002550_1920.jpg"))
+Product.create!(genre_id: 2, name: "test3", introduction: "test3", price: 1000, is_active: true, image: File.open("app/assets/images/cheesecake-1578691_1920.jpg"))
+Product.create!(genre_id: 2, name: "test4", introduction: "test4", price: 1000, is_active: true, image: File.open("app/assets/images/cake-4167209_1920.jpg"))
+Product.create!(genre_id: 3, name: "test5", introduction: "test5", price: 1000, is_active: true, image: File.open("app/assets/images/strawberries-3285333_1920.jpg"))
+Product.create!(genre_id: 3, name: "test6", introduction: "test6", price: 1000, is_active: true, image: File.open("app/assets/images/breakfast-2151201_1920.jpg"))
+Product.create!(genre_id: 4, name: "test7", introduction: "test7", price: 1000, is_active: true, image: File.open("app/assets/images/cake-1869227_1920.jpg"))
+Product.create!(genre_id: 4, name: "test8", introduction: "test8", price: 1000, is_active: true, image: File.open("app/assets/images/the-cake-427920_1920.jpg"))
 
 CartProduct.create!(customer_id: 1, product_id: 1, amount: 1)
 

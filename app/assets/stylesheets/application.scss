@@ -18,6 +18,29 @@
  @import 'font-awesome';
 
 
+  p, a, h1, h2, h3, h4, h5, span, strong {
+  font-family: 'Shippori Mincho B1', serif;
+  font-weight: bold;
+ }
+
+  main {
+   padding-top: 90px;
+  }
+
+  .navbar {
+   height: 90px;
+   position: fixed;
+   z-index: 10;
+   background-image: url(flowers-3191247_1280.jpg);  // ヘッダー背景画像
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
+ .header-logo{
+  font-family: 'Parisienne', cursive;
+ }
+
  .genre-list li{
   list-style: none;
   margin: 20px 0 20px 0;
@@ -36,19 +59,27 @@
   margin-left: 15%;
  }
 
+ .welcome-to-nagano-cake {
+   background-image: url(flowers-3191247_1280.jpg);  // トップページお店の説明文
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-attachment: fixed;
+ }
+
  .new-products {
   list-style: none;
   overflow: hidden;
+ }
+
+ .header-list {
+  list-style: none;
  }
 
  .new-products li {
   float: left;
   margin-right: 1%;
 }
-
- .nagano-cake {
-  font-family: cursive;
- }
 
  .about-introduction {
   width: 60%;
