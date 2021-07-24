@@ -1,106 +1,123 @@
-<header class="shadow-sm">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-      <h1><%= link_to "Nagano Cake", root_path, class: "text-dark text-decoration-none nagano-cake"%></h1>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-            <% if customer_signed_in? %>
-              <li class="nav-item">
-                <%= link_to customers_my_page_path, class: 'nav-link text-dark mr-5 p-3 btn btn-outline-secondary' do %>
-                  マイページ
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to products_path, class: 'nav-link text-dark mr-5 p-3 btn btn-outline-secondary' do %>
-                  商品一覧
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to cart_products_path, class: 'nav-link text-dark mr-5 p-3 btn btn-outline-secondary' do %>
-                  カート
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark mr-5 p-3 btn btn-outline-secondary' do %>
-                  ログアウト
-                <% end %>
-              </li>
-              <li class="search-form nav-item mt-4">
-                <%= form_with url: search_path, method: :get, local: true do |f| %>
-                  <%= f.text_field :keyword, placeholder: "Search" %>
-                  <%= f.hidden_field :model, :value => "products" %>
-                  <%= f.submit "検索", class:"btn btn-sm btn-primary" %>
-                <% end %>
-              </li>
-            <% elsif admin_signed_in? %>
-              <li class="nav-item">
-                <%= link_to admin_products_path, class: 'nav-link text-dark mr-3 mt-3 p-3 btn btn-outline-secondary' do %>
-                  商品一覧
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to admin_customers_path, class: 'nav-link text-dark mr-3 mt-3 p-3 btn btn-outline-secondary' do %>
-                  会員一覧
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to admin_orders_path, class: 'nav-link text-dark mr-3 mt-3 p-3 btn btn-outline-secondary' do %>
-                  注文履歴一覧
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to admin_genres_path, class: 'nav-link text-dark mr-3 mt-3 p-3 btn btn-outline-secondary' do %>
-                  ジャンル一覧
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark mr-5 mt-3 p-3 btn btn-outline-secondary' do %>
-                  ログアウト
-                <% end %>
-              </li>
-              <li class="search-form nav-item">
-                <%= form_with url: search_path, method: :get, local: true do |f| %>
-                  <%= f.select :model, options_for_select({"会員" => "customers", "商品" => "products"}) %></br>
-                  <%= f.text_field :keyword, placeholder: "Search", class:"form-control-sm form-inline" %>
-                  <%= f.submit "検索", class:"btn btn-sm btn-primary form-inline" %>
-                <% end %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to about_path, class: 'nav-link text-dark mr-5 p-3 btn btn-outline-secondary' do %>
-                  About
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to products_path, class: 'nav-link text-dark mr-5 p-3 btn btn-outline-secondary' do %>
-                  商品一覧
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to new_customer_registration_path, class: 'nav-link text-dark mr-5 p-3 btn btn-outline-secondary' do %>
-                  新規登録
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to new_customer_session_path, class: 'nav-link text-dark mr-5 p-3 btn btn-outline-secondary' do %>
-                  ログイン
-                <% end %>
-              </li>
-              <li class="search-form nav-item mt-4">
-                <%= form_with url: search_path, method: :get, local: true do |f| %>
-                  <%= f.text_field :keyword, placeholder: "Search" %>
-                  <%= f.hidden_field :model, :value => "products" %>
-                  <%= f.submit "検索", class:"btn btn-sm btn-primary" %>
-                <% end %>
-              </li>
-            <% end %>
-        </ul>
-      </div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light w-100 pr-0 pl-0">
+  <div class="container-fluid">
+    <h1><%= link_to "Nagano Cake", root_path, class: "text-dark text-decoration-none text-left mt-4 header-logo"%></h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if customer_signed_in? %>
+    <strong class="ml-5">ようこそ、<%= "#{current_customer.first_name}さん" %></strong>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
+        <li class="nav-item">
+          <%= link_to customers_my_page_path, class: 'nav-link text-dark mr-2' do %>
+            マイページ
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to products_path, class: 'nav-link text-dark mr-2' do %>
+            商品一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to cart_products_path, class: 'nav-link text-dark mr-2' do %>
+            カート
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark mr-2' do %>
+            ログアウト
+          <% end %>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <%= form_with url: search_path, method: :get, class: "form-control me-2", local: true do |f| %>
+          <%= f.text_field :keyword, placeholder: "Search" %>
+          <%= f.hidden_field :model, :value => "products" %>
+          <%= f.submit "検索", class:"btn btn-sm btn-light" %>
+        <% end %>
+      </form>
     </div>
-  </nav>
-</header>
+    <% elsif admin_signed_in? %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
+        <li class="nav-item">
+          <%= link_to admin_products_path, class: 'nav-link text-dark  mr-2' do %>
+            商品一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_customers_path, class: 'nav-link text-dark  mr-2' do %>
+            会員一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_orders_path, class: 'nav-link text-dark  mr-2' do %>
+            注文履歴一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_genres_path, class: 'nav-link text-dark  mr-2' do %>
+            ジャンル一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark  mr-2' do %>
+            ログアウト
+          <% end %>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.select :model, options_for_select({"会員" => "customers", "商品" => "products"}) %></br>
+          <%= f.text_field :keyword, placeholder: "Search", class:"form-control-sm form-inline" %>
+          <%= f.submit "検索", class:"btn btn-sm btn-light form-inline" %>
+        <% end %>
+      </form>
+    </div>
+    <% else %>
+    <strong class="ml-5">ようこそ、ゲストさん</strong>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 e  ml-auto">
+        <li class="nav-item">
+          <%= link_to about_path, class: 'nav-link text-dark mr-2' do %>
+            About
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to products_path, class: 'nav-link text-dark mr-2' do %>
+            商品一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_customer_registration_path, class: 'nav-link text-dark mr-2' do %>
+            新規登録
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_customer_session_path, class: 'nav-link text-dark mr-2' do %>
+            ログイン
+          <% end %>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, placeholder: "Search" %>
+          <%= f.hidden_field :model, :value => "products" %>
+          <%= f.submit "検索", class:"btn btn-sm btn-light" %>
+        <% end %>
+        <% end %>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
 
 

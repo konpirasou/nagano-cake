@@ -1,52 +1,52 @@
-
-    <div class="col-3 mt-5">
-      <h5 class="border border-secondary mb-0 p-2 text-center">ジャンル検索</h5>
-      <div class="border border-secondary">
-        <ul class="genre-list">
-          <% @genres.each do |genre| %>
-          <li><%= genre.name %></li>
-          <% end %>
-        </ul>
+    <div class="container-fluid">
+      <div class="row">
+        <% @products.each do |product| %>
+          <div><%= attachment_image_tag product, :image, class: "w-100 image-fluid" %></div>
+        <% end %>
       </div>
     </div>
 
-    <div class="col-9 mt-4">
-      <div class="home-image position-relative text-center m-3 col-9"><%= image_tag('eclair-3366430_640.jpg', size: '620x340') %>
-        <div class="introduction border border-secondary">
-          <p class="text-dark">ようこそ、ながのCAKEへ！
-             このサイトは、ケーキ販売のECサイトになります。
-             会員でない方も商品の閲覧はできますが、
-             購入には会員登録が必要になります
-          </p>
-        </div>
+    <div class="col-12 mt-5 text-center p-4 welcome-to-nagano-cake">
+      <h2 class="mt-3 mb-3">ようこそ、NAGANO CAKEへ！</h2>
+        <p>
+          このサイトは、ケーキ販売のECサイトになります。
+          会員でない方も商品の閲覧はできますが、
+          購入には会員登録が必要になります。
+        </p>
+    </div>
+
+    <div class="row">
+      <h3 class="col-12 mt-5 mb-5 text-center">新着情報</h3>
+      <% @new_products.each do |product| %>
+      <div class="col-md-6 col-sm-12 text-center">
+        <%= link_to product_path(product.id) do%>
+        <%= attachment_image_tag product, :image, class: "mr-3 w-100 img-responsive" %>
+        <% end %>
+        <strong><%= product.name %></strong></br>
+        <%= "#{product.price.to_s(:delimited)}円" %>
       </div>
-      <div>
-        <h3 class="m-4">新着情報</h3>
-        <!--each文などで増やす-->
-        <ul class="new-products">
-          <li>
-            <%= image_tag('eclair-3366430_640.jpg', size: '170x120') %>
-            <h6 class="mt-2">商品名</h6>
-            <h6 class="mt-2">¥0,000</h6>
-          </li>
-          <li>
-            <%= image_tag('eclair-3366430_640.jpg', size: '170x120') %>
-            <h6 class="mt-2">商品名</h6>
-            <h6 class="mt-2">¥0,000</h6>
-          </li>
-          <li>
-            <%= image_tag('eclair-3366430_640.jpg', size: '170x120') %>
-            <h6 class="mt-2">商品名</h6>
-            <h6 class="mt-2">¥0,000</h6>
-          </li>
-          <li>
-            <%= image_tag('eclair-3366430_640.jpg', size: '170x120') %>
-            <h6 class="mt-2">商品名</h6>
-            <h6 class="mt-2">¥0,000</h6>
-          </li>
-        </ul>
+      <% end %>
+    </div>
+    <div class='text-right'>
+      <%= link_to "すべての商品を見る >", products_path %>
+    </div>
+
+    <div class="row">
+      <h3 class="col-12 mt-5 mb-5 text-center">人気商品</h3>
+      <% @new_products.each do |product| %>
+      <div class="col-md-6 col-sm-12 text-center">
+        <%= link_to product_path(product.id) do%>
+        <%= attachment_image_tag product, :image, class: "mr-3 w-100 img-responsive" %>
+        <% end %>
+        <strong><%= product.name %></strong></br>
+        <%= "#{product.price.to_s(:delimited)}円" %>
       </div>
-      <div class='text-right'>
-        <%= link_to "すべての商品を見る >", products_path %>
-      </div>
-     </div>
+      <% end %>
+    </div>
+    <div class='text-right'>
+      <%= link_to "すべての商品を見る >", products_path %>
+    </div>
+
+
+
+
