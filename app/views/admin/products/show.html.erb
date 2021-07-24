@@ -1,7 +1,6 @@
 <h3 class="bg-light p-3 my-4">商品詳細</h3>
 <div class="col-sm-12 mx-auto">
   <div class="row">
-
     <div class="col-md-3">
       <%= attachment_image_tag(@product, :image, :fill, 200, 200) %>
     </div>
@@ -42,4 +41,43 @@
 
     </div>
   </div>
+
+   <div class="col-7 mt-5 pt-5">
+    <h2>レビュー</h2>
+    <div id="rate_avg"></div>
+    <div class="my-2">
+      <% @comments.each do |comment| %>
+        <h4 class="mt-5"><%= comment.title %></h4>
+        <div class="d-inline-block">
+          <span class="ml-2" id="rate_<%= comment.id %>"></span>
+            <script>
+              $('#rate_<%= comment.id %>').raty({
+                size: 20,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= comment.rate %>,
+              });
+            </script>
+          <span class="ml-5 pl-5"><%= comment.created_at.strftime("%Y/%m/%d") %></span>
+        </div>
+        <p class="d-block mt-3"><%= comment.comment %></p>
+        <%= link_to "#{comment.customer.first_name}#{comment.customer.last_name}", admin_customer_path(comment.customer_id) %>
+      <% end %>
+    </div>
 </div>
+<%= paginate @comments %>
+
+<script>
+  $('#rate_avg').raty({
+    size: 20,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @rate_avg %>
+  });
+</script>

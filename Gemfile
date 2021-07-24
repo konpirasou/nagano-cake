@@ -74,5 +74,5 @@ gem "payjp"
 gem "pry-byebug"
 gem "pry-rails"
 gem "dotenv-rails"
-
+gem 'chartkick'
 #test

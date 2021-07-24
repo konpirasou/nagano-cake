@@ -4,7 +4,11 @@
       <div class="border border-secondary">
         <ul class="genre-list">
           <% @genres.each do |genre| %>
-          <li><%= genre.name %></li>
+            <li>
+              <%= link_to products_path(genre_search: genre.id) do %>
+                <%= genre.name %>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </div>
