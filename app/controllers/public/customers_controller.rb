@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+
   def show
     @customer = current_customer
   end
@@ -23,7 +24,7 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
     @customer = current_customer
     @customer.update(is_deleted: true)
-    redirect_to root_path
+    sign_out_and_redirect(current_customer)
   end
 
   def customer_params

@@ -56,7 +56,7 @@
               <td class="col-sm-1"><%= order_product.product.add_tax_price * order_product.amount %></td>
               <td class="col-sm-4">
                 <%= form_with model: order_product, url: admin_order_product_path(order_product), method: :patch, local: true do |f| %>
-                  <%= f.select :product_status, OrderProduct.product_statuses.keys.to_a, {} %>
+                  <%= f.select :product_status, OrderProduct.product_statuses.keys %>
                   <%= f.submit "変更", class: "btn btn-info" %>
                 <% end %>
               </td>

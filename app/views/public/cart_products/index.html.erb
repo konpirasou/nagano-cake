@@ -18,14 +18,14 @@
     <tbody>
       <tr>
         <td><%= attachment_image_tag cart_product.product, :image, :fill, 70, 45, class: "mr-3" %><%= cart_product.product.name %></td>
-        <td><%= cart_product.product.price %>(<%= cart_product.product.add_tax_price.to_s(:delimited) %>)</td>
+        <td><%= cart_product.product.price.to_s(:delimited) %>(<%= cart_product.product.add_tax_price.to_s(:delimited) %>)</td>
         <td>
            <%= form_with model: cart_product, url: cart_product_path(cart_product), method: :patch, local: true do |f| %>
               <%= f.number_field :amount, in: 1..5, value: cart_product.amount %>
               <%= f.submit "変更", class: "btn btn-info" %>
            <% end %>
         </td>
-        <td><%= cart_product.product.add_tax_price * cart_product.amount %></td>
+        <td><%= (cart_product.product.add_tax_price * cart_product.amount).to_s(:delimited) %></td>
         <td><%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, class: "btn btn-danger m-6" %></td>
    　  </tr>
     <% end %>
@@ -39,7 +39,7 @@
 <table class="table table-bordered text-center col-4 ml-auto">
   <tr>
     <th class>合計金額</th>
-    <td><%= @total_price %></td>
+    <td><%= @total_price.to_s(:delimited) %></td>
   </tr>
 </table>
 
