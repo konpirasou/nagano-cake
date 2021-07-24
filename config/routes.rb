@@ -6,15 +6,17 @@ Rails.application.routes.draw do
   devise_for :admins, module: "admin/admins", path: "/admin"
   root :to => "public/homes#top"
   get "about" => "public/homes#about"
-  resources :products, only: [:index, :show], controller: "public/products"
+  resources :products, only: [:index, :show], controller: "public/products" do
+    resources :comments, only: [:create, :destroy], controller: "public/comments"
+  end
   resources :cart_products, only: [:index, :create, :update, :destroy], controller: "public/cart_products"
-  delete "cart_products" => "public/cart_products#destroy_all", as: 'destroy_all' #名前付きルートを追加
-  resources :customers, only: [:update], controller: "public/customers" #showを削除
-  get "customers/my_page" => "public/customers#show"                           #showアクションのurlをmy_pageに変更
+  delete "cart_products" => "public/cart_products#destroy_all", as: 'destroy_all'
+  resources :customers, only: [:update], controller: "public/customers"
+  get "customers/my_page" => "public/customers#show"
   get "customers/my_page/edit" => "public/customers#edit"
   get "customers/my_page/cancel" => "public/customers#cancel"
   patch "customers/my_page/cancel" => "public/customers#unsubscribe"
-  get "orders/confirm" => "public/orders#confirm"
+  post "orders/confirm" => "public/orders#confirm"
   get "orders/complete" => "public/orders#complete"
   resources :orders, only: [:index, :show, :new, :create], controller: "public/orders"
   resources :addresses, only: [:index, :create, :edit, :update, :destroy], controller: "public/addresses"

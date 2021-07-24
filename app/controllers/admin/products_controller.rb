@@ -9,6 +9,8 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @comments = @product.comments.all.page(params[:page]).per(3)
+    @rate_avg = @comments.average(:rate).to_i
   end
 
   def new
