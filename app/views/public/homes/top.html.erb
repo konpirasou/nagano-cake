@@ -1,8 +1,16 @@
-    <div class="container-fluid">
-      <div class="row">
-        <% @products.each do |product| %>
-          <div><%= attachment_image_tag product, :image, class: "w-100 image-fluid" %></div>
-        <% end %>
+
+     <div class="slider">
+      <div>
+        <%= image_tag('dessert-3331009_1280.jpg') %>
+      </div>
+      <div>
+        <%= image_tag('blueberry-1082500_1280.jpg') %>
+      </div>
+      <div>
+        <%= image_tag('breakfast-2151201_1280.jpg') %>
+      </div>
+      <div>
+        <%= image_tag('cake-1850011_1280.jpg') %>
       </div>
     </div>
 

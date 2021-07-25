@@ -16,7 +16,7 @@ Genre.create!(name: "プリン")
 Genre.create!(name: "焼き菓子")
 Genre.create!(name: "キャンディ")
 
-Product.create!(genre_id: 1, name: "test", introduction: "test", price: 1000, is_active: true, image: File.open("app/assets/images/eclair-3366430_640.jpg"))
+Product.create!(genre_id: 1, name: "test", introduction: "test", price: 1000, is_active: true, image: File.open("app/assets/images/cake-3555184_1920.jpg"))
 Product.create!(genre_id: 1, name: "test2", introduction: "test2", price: 1000, is_active: true, image: File.open("app/assets/images/muffins-4002550_1920.jpg"))
 Product.create!(genre_id: 2, name: "test3", introduction: "test3", price: 1000, is_active: true, image: File.open("app/assets/images/cheesecake-1578691_1920.jpg"))
 Product.create!(genre_id: 2, name: "test4", introduction: "test4", price: 1000, is_active: true, image: File.open("app/assets/images/cake-4167209_1920.jpg"))
