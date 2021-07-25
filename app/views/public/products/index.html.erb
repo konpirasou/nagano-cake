@@ -1,21 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col-12 mt-5">
-      <h3 class="m-5">商品一覧<span>(全<%= @products.count %>件)</span></h3>
-          <ul class="new-products">
-            <div class="row">
-              <% @products.each do |product| %>
-            <li class="col-3">
-              <%= link_to product_path(product.id) do %>
-                <%= attachment_image_tag product, :image, :fill, 250, 170 %>
-                  <h6 class="mt-2 text-dark"><%= product.name %></h6>
-              <% end %>
-                 <h6 class="mt-2 pb-5">¥<%= product.price %></h6>
-            </li>
-          <% end %>
-        </div>
-      </ul>
+        <% if params[:genre_search].present? && @products.present? %>
+          <h3><%= @products.first.genre.name %>一覧<span>(全<%= @products.count %>件)</span></h3>
+        <% else %>
+          <h3 class="m-5">商品一覧<span>(全<%= @products.count %>件)</span></h3>
+        <% end %>
     </div>
+    <ul class="new-products">
+      <div class="row">
+        <% @products.each do |product| %>
+          <li class="col-3">
+            <%= link_to product_path(product.id) do %>
+              <%= attachment_image_tag product, :image, :fill, 250, 170 %>
+               <h6 class="mt-2 text-dark"><%= product.name %></h6>
+            <% end %>
+               <h6 class="mt-2 pb-5">¥<%= product.price %></h6>
+          </li>
+        <% end %>
+      </div>
+    </ul>
   </div>
 </div>
-    <%= paginate @products %>
+<%= paginate @products %>
