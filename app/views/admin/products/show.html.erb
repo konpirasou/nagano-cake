@@ -42,33 +42,39 @@
     </div>
   </div>
 
-   <div class="col-7 mt-5 pt-5">
-    <h2>レビュー</h2>
-    <div id="rate_avg"></div>
-    <div class="my-2">
-      <% @comments.each do |comment| %>
-        <h4 class="mt-5"><%= comment.title %></h4>
-        <div class="d-inline-block">
-          <span class="ml-2" id="rate_<%= comment.id %>"></span>
-            <script>
-              $('#rate_<%= comment.id %>').raty({
-                size: 20,
-                starOff:  '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                starHalf: '<%= asset_path('star-half.png') %>',
-                half: true,
-                readOnly: true,
-                score: <%= comment.rate %>,
-              });
-            </script>
-          <span class="ml-5 pl-5"><%= comment.created_at.strftime("%Y/%m/%d") %></span>
-        </div>
-        <p class="d-block mt-3"><%= comment.comment %></p>
-        <%= link_to "#{comment.customer.first_name}#{comment.customer.last_name}", admin_customer_path(comment.customer_id) %>
-      <% end %>
+  <div class="row">
+    <div class="col-4 mt-5 pt-5">
+      <h2>レビュー</h2>
+      <div id="rate_avg"></div>
+      <%= bar_chart @data, colors: ["orange"], min:0, max: 100 %>
     </div>
-</div>
+
+    <div class="col-7 offset-1 mt-5 pt-5">
+      <div class="my-2">
+        <% @comments.each do |comment| %>
+          <h4 class="mt-5"><%= comment.title %></h4>
+          <div class="d-inline-block">
+            <span class="ml-2" id="rate_<%= comment.id %>"></span>
+              <script>
+                $('#rate_<%= comment.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= comment.rate %>,
+                });
+              </script>
+            <span class="ml-5 pl-5"><%= comment.created_at.strftime("%Y/%m/%d") %></span>
+          </div>
+          <p class="d-block mt-3"><%= comment.comment %></p>
+          <%= link_to "#{comment.customer.first_name}#{comment.customer.last_name}", admin_customer_path(comment.customer_id) %>
+        <% end %>
+      </div>
+    </div>
 <%= paginate @comments %>
+</div>
 
 <script>
   $('#rate_avg').raty({
