@@ -14,7 +14,11 @@
       </div>
     </div>
     <div class="col-9 mt-5">
-      <h3>商品一覧<span>(全<%= @products.count %>件)</span></h3>
+      <% if params[:genre_search].present? && @products.present? %>
+        <h3><%= @products.first.genre.name %>一覧<span>(全<%= @products.count %>件)</span></h3>
+      <% else %>
+        <h3>商品一覧<span>(全<%= @products.count %>件)</span></h3>
+      <% end %>
         <ul class="new-products">
           <% @products.each do |product| %>
             <li>

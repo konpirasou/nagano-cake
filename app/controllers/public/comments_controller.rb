@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     if comment.save
       redirect_to product_path(product)
     else
-      redirect_to product_path(product),　alert:　"コメントの投稿に失敗しました"
+      redirect_to product_path(product),　alert: "コメントの投稿に失敗しました"
     end
   end
 
