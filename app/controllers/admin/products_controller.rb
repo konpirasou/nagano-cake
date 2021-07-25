@@ -11,6 +11,10 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @comments = @product.comments.all.page(params[:page]).per(3)
     @rate_avg = @comments.average(:rate).to_i
+    @product_order_count = @product.order.count
+    @product_sale_count = @product.order_products.sum(:amount)
+    @sales_price = @product_sale_count * @product.price
+    @sale_data =Product.all_month(@product)
   end
 
   def new

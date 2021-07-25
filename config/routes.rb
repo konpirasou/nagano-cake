@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "about" => "public/homes#about"
   resources :products, only: [:index, :show], controller: "public/products" do
     resources :comments, only: [:create, :destroy], controller: "public/comments"
+    resource :favorites, only: [:create, :destroy], controller: "public/favorites"
   end
   resources :cart_products, only: [:index, :create, :update, :destroy], controller: "public/cart_products"
   delete "cart_products" => "public/cart_products#destroy_all", as: 'destroy_all'

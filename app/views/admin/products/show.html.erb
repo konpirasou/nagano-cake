@@ -42,6 +42,14 @@
     </div>
   </div>
 
+  <div class="col-7 mt-5 pt-5">
+    <h2>売上情報</h2>
+    <p>注文件数:<%= @product_order_count %></p>
+    <p>販売件数:<%= @product_sale_count %></p>
+    <p>総売上げ：<%= @sales_price.to_s(:delimited) %>円</p>
+    <%= column_chart @sale_data, width: "800px", height: "500px" %>
+  </div>
+
    <div class="col-7 mt-5 pt-5">
     <h2>レビュー</h2>
     <div id="rate_avg"></div>
@@ -67,7 +75,7 @@
         <%= link_to "#{comment.customer.first_name}#{comment.customer.last_name}", admin_customer_path(comment.customer_id) %>
       <% end %>
     </div>
-</div>
+  </div>
 <%= paginate @comments %>
 
 <script>

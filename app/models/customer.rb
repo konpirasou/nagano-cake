@@ -9,6 +9,8 @@ class Customer < ApplicationRecord
   has_many	:cart_products, foreign_key: "customer_id",	dependent: :destroy
   has_many	:products, through: :cart_products,	source: :product
   has_many  :comments, dependent: :destroy
+  has_many  :favorites, dependent: :destroy
+  has_many  :fav_products, through: :favorites, source: :product
 
   validates :last_name, presence: true
   validates :first_name, presence: true

@@ -3,9 +3,14 @@ class Public::ProductsController < ApplicationController
     @genres = Genre.all
     if params[:genre_search]
       @products = Product.where(genre_id: params[:genre_search]).page(params[:page]).per(8)
+    elsif params[:fav_list]
+      @products = current_customer.fav_products.page(params[:page]).per(8)
     else
       @products = Product.all.page(params[:page]).per(8)
     end
+    # ランキング機能
+    @ranking = OrderProduct.all.group(:product_id).sum(:amount).sort_by{|key,value| value}.reverse.to_h.keys
+
   end
 
   def show
