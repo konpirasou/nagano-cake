@@ -16,8 +16,25 @@
 
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
-//= require_tree .
+
 //= require jquery.raty.js
 //= require chartkick
 //= require Chart.bundle
+//= require_tree .
+
+/*global $*/
+
+
+$(function() {
+  $('.slider').slick({
+    dots: true,
+    autoplay:true,
+    autoplaySpeed: 4000,
+    arrows: false,
+    centerMode: true,
+    centerPadding: '0px',
+    infinite: true,
+    variableWidth: true,
+
+  });
+});
