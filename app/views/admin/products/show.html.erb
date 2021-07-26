@@ -1,60 +1,66 @@
-<h3 class="bg-light p-3 my-4">商品詳細</h3>
-<div class="col-sm-12 mx-auto">
-  <div class="row">
-    <div class="col-md-3">
-      <%= attachment_image_tag(@product, :image, :fill, 200, 200) %>
+<div class="container">
+  <h3 class="bg-light p-3 my-4">商品詳細</h3>
+  <div class="col-sm-12 mx-auto">
+    <div class="row">
+      <div class="col-md-3">
+        <%= attachment_image_tag(@product, :image, :fill, 200, 200) %>
+      </div>
+
+      <div class="col-md-5">
+        <div>
+          <label>商品名</label>
+          <%= @product.name %>
+        </div>
+
+        <div>
+          <label>商品説明</label>
+          <%= @product.introduction %>
+        </div>
+
+        <div>
+          <label>ジャンル</label>
+          <%= @product.genre.name %>
+        </div>
+
+        <div>
+          <label>税込価格<br>(税抜価格)</label>
+          <%= @product.price.to_s(:delimited) %>(<%= @product.add_tax_price.to_s(:delimited) %>)
+        </div>
+
+        <div>
+          <label>販売ステータス</label>
+          <% if @product.is_active == true %>
+            <p class="text-success">販売中</p>
+          <% else %>
+            <p class="text-secondary">販売停止中</p>
+          <% end %>
+        </div>
+
+        <div class="actions row">
+          <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-success btn-block col-sm-3 offset-sm-3" %>
+        </div>
+      </div>
     </div>
 
-    <div class="col-md-5">
-      <div>
-        <label>商品名</label>
-        <%= @product.name %>
+  <div class="row mt-5 pt-5">
+    <div class="col-3 ">
+      <h2>売上情報</h2>
+      <div class="ml-3 mt-3">
+        <p>注文件数:<%= @product_order_count %></p>
+        <p>販売件数:<%= @product_sale_count %></p>
+        <p>総売上げ：<%= @sales_price.to_s(:delimited) %>円</p>
       </div>
-
-      <div>
-        <label>商品説明</label>
-        <%= @product.introduction %>
-      </div>
-
-      <div>
-        <label>ジャンル</label>
-        <%= @product.genre.name %>
-      </div>
-
-      <div>
-        <label>税込価格<br>(税抜価格)</label>
-        <%= @product.price.to_s(:delimited) %>(<%= @product.add_tax_price.to_s(:delimited) %>)
-      </div>
-
-      <div>
-        <label>販売ステータス</label>
-        <% if @product.is_active == true %>
-          <p class="text-success">販売中</p>
-        <% else %>
-          <p class="text-secondary">販売停止中</p>
-        <% end %>
-      </div>
-
-      <div class="actions row">
-        <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-success btn-block col-sm-3 offset-sm-3" %>
-      </div>
-
     </div>
-  </div>
-
-  <div class="col-7 mt-5 pt-5">
-    <h2>売上情報</h2>
-    <p>注文件数:<%= @product_order_count %></p>
-    <p>販売件数:<%= @product_sale_count %></p>
-    <p>総売上げ：<%= @sales_price.to_s(:delimited) %>円</p>
-    <%= column_chart @sale_data, width: "800px", height: "500px" %>
+    <div class="col-7">
+      <%= column_chart @sale_data %>
+    </div>
   </div>
 
   <div class="row">
     <div class="col-4 mt-5 pt-5">
-      <h2>レビュー</h2>
+      <h2>お客様の声</h2>
       <div id="rate_avg"></div>
-      <%= bar_chart @data, colors: ["orange"], min:0, max: 100 %>
+      <%= bar_chart @data, colors: ["orange"], min: 0, max: 100 %>
     </div>
 
     <div class="col-7 offset-1 mt-5 pt-5">
@@ -81,7 +87,7 @@
         <% end %>
       </div>
     </div>
-
+  </div>
 <%= paginate @comments %>
 </div>
 

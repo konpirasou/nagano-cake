@@ -1,11 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 mt-5">
-        <% if params[:genre_search].present? && @products.present? %>
-          <h3><%= @products.first.genre.name %>一覧<span>(全<%= @products.count %>件)</span></h3>
-        <% else %>
-          <h3 class="m-5">商品一覧<span>(全<%= @products.count %>件)</span></h3>
+    <div class="col-12">
+    <div class="genre-nav mt-4">
+      <ul class="nav justify-content-center">
+          <li class="genre-item nav-item p-2"><%= link_to "全商品", products_path, class:"nav-link text-dark" %> </li>
+        <% @genres.each do |genre| %>
+          <li class="genre-item nav-item p-2"><%= link_to genre.name, products_path(genre_search: genre.id), class:"nav-link text-dark" %> </li>
         <% end %>
+      </ul>
+    </div>
+      <% if params[:genre_search].present? && @products.present? %>
+        <h3><%= @products.first.genre.name %>一覧<span>(全<%= @products.count %>件)</span></h3>
+      <% else %>
+        <h3 class="m-5">商品一覧<span>(全<%= @products.count %>件)</span></h3>
+      <% end %>
     </div>
     <ul class="new-products">
       <div class="row">
@@ -21,5 +29,5 @@
       </div>
     </ul>
   </div>
+  <%= paginate @products %>
 </div>
-<%= paginate @products %>
