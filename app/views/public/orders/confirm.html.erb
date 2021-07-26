@@ -2,10 +2,10 @@
   <div class="row">
      <div class="col-8">
       <h4 class="bg-light p-3 my-4 d-inline-block">注文情報確認</h4>
-    
+
       <table class="table table-bordered">
         <thead>
-          <tr class="thead-light">
+          <tr class="table-secondary">
             <th scope="col">商品名</th>
             <th scope="col">単価(税込)</th>
             <th scope="col">数量</th>
@@ -27,7 +27,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <div class="col-4">
       <h4 class="p-3 my-4 d-inline-block"></h4>
       <table class="table table-bordered mt-4">
@@ -45,7 +45,7 @@
         </tr>
       </table>
     </div>
-    
+
       <h5 class="col-3">支払い方法</h5>
       <p class="col-3">
         <%= @order.payment_method %>
@@ -77,7 +77,7 @@
           <% f.submit %>
         </script>
       <% end %>
-    
+
     <% end %>
   </div>
 </div>

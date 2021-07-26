@@ -24,16 +24,27 @@
 
 /*global $*/
 
-
 $(function() {
-  $('.slider').slick({
+  $(".slick").slick({
+    arrows: false,
     dots: true,
-    autoplay:true,
+    autoplay: true,
     autoplaySpeed: 2000,
-    centerMode: true,
-    centerPadding: '0px',
-    infinite: true,
-    variableWidth: true,
-
+    speed: 1500,
+    fade: true,
+    pauseOnFocus: false,
+    pauseOnHover: false,
+    pauseOnDotsHover: false,
+    swipe: true,
   });
 });
+
+
+
+$('head').append(
+'<style>body{display:none;}'  //body {display:none;}を指定して要素を隠す
+);
+$(window).on("load", function() {
+$('body').delay(600).fadeIn("slow");
+});
+

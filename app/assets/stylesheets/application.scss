@@ -21,11 +21,10 @@
 
 
   * {
-   box-sizing: border-box;
    margin: 0;
    padding: 0;
+   box-sizing: border-box;
   }
-
 
   p, a, h1, h2, h3, h4, h5, span, strong {
   font-family: 'Shippori Mincho B1', serif;
@@ -39,26 +38,32 @@
    padding-bottom: 120px;
    box-sizing: border-box;
   }
+
   // ヘッダーの設定
+
   .navbar {
    height: 90px;
-   // position: fixed;
+   position: fixed;
    z-index: 10;
    background-image: url(flowers-3191247_1280.jpg);  // ヘッダー背景画像
    background-position: center center;
    background-repeat: no-repeat;
    background-size: cover;
  }
+
  .header-logo{
   font-family: 'Parisienne', cursive;
  }
+
   // フッターの設定
+
   .footer {
    position: absolute;
    bottom: 0;
    width: 100%;
    background-color: #f5f5f5;
  }
+
   .footer-image {
    width: 100%;
    height: 60px;
@@ -67,16 +72,20 @@
    background-repeat: no-repeat;
    background-size: cover;
  }
+
  .footer-logo {
    font-family: 'Parisienne', cursive;
  }
+
  .genre-list li{
   list-style: none;
   margin: 20px 0 20px 0;
  }
+
  .home-image {
   position: relative;
  }
+
  .introduction {
   background-color: white;
   padding: 30px;
@@ -85,6 +94,7 @@
   width: 70%;
   margin-left: 15%;
  }
+
  .welcome-to-nagano-cake {
    background-image: url(flowers-3191247_1280.jpg);  // トップページお店の説明文
    background-position: center center;
@@ -92,23 +102,29 @@
    background-size: cover;
    background-attachment: fixed;
  }
+
  .new-products {
   list-style: none;
   overflow: hidden;
  }
+
  .header-list {
   list-style: none;
  }
+
  .new-products li {
   float: left;
 }
+
 caption {
 	caption-side: top;
 }
+
 // kaminari：センター揃え
 .pagination {
   justify-content: center;
 }
+
 // エラーメッセージによるフォームのレイアウト崩れを防ぐ
 .field_with_errors {
   display: contents;
@@ -116,59 +132,118 @@ caption {
     @extend .is-invalid;
   }
 }
+
 //slickの設定
- .slider {
-  max-width: 100%;
-  margin: 0 auto;
-  }
- .slider .slick-list{    // 非表示になっている両サイドの画像を表示させる。
-  overflow: hidden;
-  }
- .slider img{
-    object-fit: cover;
-    width: 100%;
-    height: 50vw;
-    max-width: 100%;
-    max-height: 100%;
-    background-position: center center;
-    backgroung-size: cover;
+
+.slick-dots li button:before {   //ボタンを大きくする
+   font-size: 120px;
+   color: white;
+    }
+
+ .slick-dots {
+   bottom: 12%;
+  z-index: +1;
  }
- .slick-dots li button:before {   //ボタンを大きくする
-    font-size: 120px;
-    color: white;
-     }
+
+ .slick div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 95vh;
+  margin-top: -24px;
+}
+
+.slick div.img01 {
+  background-image: url(cheesecake-2598695_1280.jpg);
+  background-size: cover;
+}
+
+.slick div.img02 {
+  background-image: url(blueberry-1082500_1280.jpg);
+  background-size: cover;
+}
+
+.slick div.img03 {
+  background-image: url(breakfast-2151201_1280.jpg);
+  background-size: cover;
+}
+
+.slick div.img04 {
+  background-image: url(dessert-3331009_1280.jpg);
+  background-size: cover;
+}
+
 // 検索フォームアイコン
 .search-field,
 .search-admin-field{
   position: relative;
 }
+
 .search-admin-field{
   position: relative;
 }
+
 .search-icon{
   position: absolute;
   left: 80%;
   top: -15%;
 }
+
 .search-admin-icon{
   position: absolute;
   left: 78%;
   top: 38%;
 }
+
 // ジャンル検索
 .dropdown:hover>.dropdown-menu {
   display: block;
 }
+
 .genre-nav{
   border-top: #E2DCD3 1px solid;
   border-bottom: #E2DCD3 1px solid;
 }
+
 .genre-item:hover{
   border-top: #E3C794 2px solid;
   opacity: 0.8;
 }
+
 .nav-menu-item:hover{
   border-bottom: #877658 1px solid;
   margin: 0 auto;
   justify-content: center;
 }
+
+ // thanksページの装飾
+
+.ornament h1{
+	position:relative;
+	display:inline-block;
+	padding:24px 64px;
+}
+.ornament h1:before, .ornament h1:after{
+	content:"";
+	display:block;
+	width:50%;
+	height:4px;
+	border-top:1px solid #111;
+	position:absolute;
+	top:0;
+}
+.ornament h1:before{left:-24px;}
+.ornament h1:after{right:-24px;}
+.ornament h1 span{
+	display:block;
+	width:10px;height:10px;
+	border:2px solid #111;
+	-webkit-transform:rotate(45deg);
+	transform:rotate(45deg);
+	position:absolute;
+	top:-4px;
+	left:50%;
+	margin-left:-4px;
+}
+
+

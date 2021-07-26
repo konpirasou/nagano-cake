@@ -1,44 +1,49 @@
-<h3 class="bg-light py-3 my-4 offset-md-1">会員情報編集</h3>
-<div class="col-sm-12 mx-auto">
-  <%= form_with model: @customer, url: customer_path(@customer.id), class: 'form-horizontal', local: true do |f| %>
-    <%= render "public/customers/shared/error_messages", resource: @customer %>
-
-    <div class="field form-group row">
-      <%= f.label :"氏名", class: "col-sm-3 control-label" %>
-      <%= f.text_field :first_name, autofocus: true, class: "col-sm-2" %>
-      <%= f.text_field :last_name, autofocus: true, class: "col-sm-2 ml-5" %>
+<div class="container">
+  <div class="row">
+    <h3 class="bg-light py-3 my-4 offset-md-1">会員情報編集</h3>
+    <div class="col-sm-12 mx-auto">
+      <%= form_with model: @customer, url: customer_path(@customer.id), class: 'form-horizontal', local: true do |f| %>
+        <%= render "public/customers/shared/error_messages", resource: @customer %>
+    
+        <div class="field form-group row">
+          <%= f.label :"氏名", class: "col-sm-3 control-label" %>
+          <%= f.text_field :first_name, autofocus: true, class: "col-sm-2" %>
+          <%= f.text_field :last_name, autofocus: true, class: "col-sm-2 ml-5" %>
+        </div>
+    
+        <div class="field form-group row">
+          <%= f.label :"フリガナ", class: "col-sm-3 control-label" %>
+          <%= f.text_field :first_name_kana, autofocus: true, class: "col-sm-2" %>
+          <%= f.text_field :last_name_kana, autofocus: true, class: "col-sm-2 ml-5" %>
+        </div>
+    
+        <div class="field form-group row">
+          <%= f.label :"郵便番号", class: "col-sm-3 control-label" %>
+          <%= f.text_field :postal_code, autofocus: true, class: "col-sm-2" %>
+        </div>
+    
+        <div class="field form-group row">
+          <%= f.label :"住所", class: "col-sm-3 control-label" %>
+          <%= f.text_field :address, autofocus: true, class: "col-sm-6" %>
+        </div>
+    
+        <div class="field form-group row">
+          <%= f.label :"電話番号", class: "col-sm-3 control-label" %>
+          <%= f.text_field :telephone_number, autofocus: true, class: "col-sm-2" %>
+        </div>
+    
+        <div class="field form-group row">
+          <%= f.label :"メールアドレス", class: "col-sm-3 control-label" %>
+          <%= f.text_field :email, autofocus: true, class: "col-sm-2" %>
+        </div>
+    
+        <div class="field form-group row">
+          <%= f.submit "編集内容を保存", class: "btn btn-success col-sm-3 offset-sm-3 p-2 mt-3" %>
+          <%= link_to "退会する", customers_my_page_cancel_path, class: "btn btn-danger col-sm-2 offset-sm-1 p-2 mt-3" %>
+        </div>
+    
+      <% end %>
     </div>
-
-    <div class="field form-group row">
-      <%= f.label :"フリガナ", class: "col-sm-3 control-label" %>
-      <%= f.text_field :first_name_kana, autofocus: true, class: "col-sm-2" %>
-      <%= f.text_field :last_name_kana, autofocus: true, class: "col-sm-2 ml-5" %>
-    </div>
-
-    <div class="field form-group row">
-      <%= f.label :"郵便番号", class: "col-sm-3 control-label" %>
-      <%= f.text_field :postal_code, autofocus: true, class: "col-sm-2" %>
-    </div>
-
-    <div class="field form-group row">
-      <%= f.label :"住所", class: "col-sm-3 control-label" %>
-      <%= f.text_field :address, autofocus: true, class: "col-sm-6" %>
-    </div>
-
-    <div class="field form-group row">
-      <%= f.label :"電話番号", class: "col-sm-3 control-label" %>
-      <%= f.text_field :telephone_number, autofocus: true, class: "col-sm-2" %>
-    </div>
-
-    <div class="field form-group row">
-      <%= f.label :"メールアドレス", class: "col-sm-3 control-label" %>
-      <%= f.text_field :email, autofocus: true, class: "col-sm-2" %>
-    </div>
-
-    <div class="field form-group row">
-      <%= f.submit "編集内容を保存", class: "btn btn-success col-sm-3 offset-sm-3 p-2 mt-3" %>
-      <%= link_to "退会する", customers_my_page_cancel_path, class: "btn btn-danger col-sm-2 offset-sm-1 p-2 mt-3" %>
-    </div>
-
-  <% end %>
+  </div>
 </div>
+
