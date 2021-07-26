@@ -29,8 +29,7 @@ $(function() {
   $('.slider').slick({
     dots: true,
     autoplay:true,
-    autoplaySpeed: 4000,
-    arrows: false,
+    autoplaySpeed: 2000,
     centerMode: true,
     centerPadding: '0px',
     infinite: true,
