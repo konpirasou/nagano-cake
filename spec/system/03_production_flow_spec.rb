@@ -38,40 +38,39 @@ describe '製作〜発送のテスト' do
       visit admin_order_path(order)
     end
 
-  it '注文ステータスを入金確認に変更すると制作ステータスが制作待ちに更新される' do
-    select "入金確認", from: 'order[status]'
-    click_button '変更'
-    expect(order_product.reload.product_status).to eq "製作待ち"
-  end
+    it '注文ステータスを入金確認に変更すると制作ステータスが制作待ちに更新される' do
+      select "入金確認", from: 'order[status]'
+      click_button '変更'
+      expect(order_product.reload.product_status).to eq "製作待ち"
+    end
 
-  it '製作ステータスを１つ製作中に変更する' do
-    select "製作中", from: 'order_product[product_status]'
-    click_button '変更'
-    expect(order.reload.status).to eq "製作中"
-  end
+    it '製作ステータスを１つ製作中に変更する' do
+      select "製作中", from: 'order_product[product_status]'
+      click_button '変更'
+      expect(order.reload.status).to eq "製作中"
+    end
 
-  before do
-    OrderProduct.create!(product_id: 1, order_id: 1, price: 2000, amount: 1, product_status: 3)
-  end
+    before do
+      OrderProduct.create!(product_id: 1, order_id: 1, price: 2000, amount: 1, product_status: 3)
+    end
 
-  it '全ての商品の製作ステータスを製作完了にしたら注文ステータスが発送待ちに更新される' do
-    select "製作完了", from: 'order_product[product_status]'
-    click_button '変更'
-    expect(order.reload.status).to eq '発送準備中'
-  end
+    it '全ての商品の製作ステータスを製作完了にしたら注文ステータスが発送待ちに更新される' do
+      select "製作完了", from: 'order_product[product_status]'
+      click_button '変更'
+      expect(order.reload.status).to eq '発送準備中'
+    end
 
-  it '注文ステータスを発送済みに変更し更新されるか' do
-    select "発送済み", from: 'order[status]'
-    click_button '変更'
-    expect(order.reload.status).to eq '発送済み'
-  end
+    it '注文ステータスを発送済みに変更し更新されるか' do
+      select "発送済み", from: 'order[status]'
+      click_button '変更'
+      expect(order.reload.status).to eq '発送済み'
+    end
 
     it "ヘッダーからログアウトのリンクを押すと管理者ログイン画面に遷移する" do
       click_link "ログアウト"
       expect(current_path).to eq new_admin_session_path
     end
   end
-end
 
 describe 'ECサイト側のテスト' do
   let!(:customer) {create(:customer)}
@@ -106,6 +105,7 @@ describe 'ECサイト側のテスト' do
         expect(page).to have_link 'ログアウト', href: destroy_customer_session_path
       end
     end
+
     context 'ヘッダーからマイページへ遷移' do
       it 'マイページリンクを押すとマイページが表示される' do
         click_link 'マイページ'
