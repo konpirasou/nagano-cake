@@ -27,19 +27,34 @@ class Public::CartProductsController < ApplicationController
   def update
     @cart_product = CartProduct.find(params[:id])
     @cart_product.update(amount: params[:cart_product][:amount].to_i)
-    redirect_to cart_products_path
+    # 非同期通信用 変数
+    @cart_products = current_customer.cart_products
+    @total_price = 0
+    @cart_products.each do |cart_product|
+      @total_price += (cart_product.product.add_tax_price * cart_product.amount)
+    end
   end
 
   def destroy
     @cart_product = CartProduct.find(params[:id])
     @cart_product.destroy
-    redirect_to cart_products_path
+    # 非同期通信用 変数
+    @cart_products = current_customer.cart_products
+    @total_price = 0
+    @cart_products.each do |cart_product|
+      @total_price += (cart_product.product.add_tax_price * cart_product.amount)
+    end
   end
 
   def destroy_all
     @cart_products = current_customer.cart_products
     @cart_products.destroy_all
-    redirect_to cart_products_path, notice: "商品を全て削除しました。"
+    # 非同期通信用 変数
+    @cart_products = current_customer.cart_products
+    @total_price = 0
+    @cart_products.each do |cart_product|
+      @total_price += (cart_product.product.add_tax_price * cart_product.amount)
+    end
   end
 
   private

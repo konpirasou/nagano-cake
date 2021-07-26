@@ -6,14 +6,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <% if customer_signed_in? %>
-      <strong class="ml-5">ようこそ、<%= "#{current_customer.first_name}さん" %></strong>
+      <strong class="ml-5">ようこそ、<%= link_to "#{current_customer.first_name}さん", customers_my_page_path, class:"text-dark" %></strong>
         <p id="notice" class="ml-5 mt-3"><%= notice %></p>
         <p id="alert" class="ml-5 mt-3"><%= alert %></p>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
           <li class="nav-item dropdown">
-            <%= link_to "マイページ", customers_my_page_path, class: 'nav-link nav-menu-item' %>
-            <div class="dropdown-menu bg-light text-dark">
+            <%= link_to "マイページ", customers_my_page_path, class: 'nav-link nav-menu-item text-dark' %>
+            <div class="dropdown-menu mypage-dropdown-item">
               <%= link_to "マイページ", customers_my_page_path, class: 'dropdown-item'%>
               <%= link_to "登録情報編集", customers_my_page_edit_path, class: 'dropdown-item'%>
               <%= link_to "配送先一覧", addresses_path, class: 'dropdown-item'%>
@@ -28,7 +28,7 @@
           </li>
           <li class="nav-item nav-menu-item">
             <%= link_to cart_products_path, class: 'nav-link text-dark mr-2 header-cart' do %>
-              カート<span class="badge badge-pill badge-danger cart-count"><%= current_customer.cart_products.count %></span>
+              カート<span class="badge badge-pill badge-danger cart-count" id="cart-counts"><%= current_customer.cart_products.count %></span>
             <% end %>
           </li>
           <li class="nav-item nav-menu-item">
@@ -48,10 +48,14 @@
     <% elsif admin_signed_in? %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
-          <li class="nav-item">
-            <%= link_to admin_products_path, class: 'nav-link text-dark  mr-2' do %>
+          <li class="nav-item dropdown">
+            <%= link_to admin_products_path, class: 'nav-link text-dark mr-2' do %>
               商品一覧
             <% end %>
+            <div class="dropdown-menu mypage-dropdown-item">
+              <%= link_to "商品一覧", admin_products_path, class: 'dropdown-item'%>
+              <%= link_to "商品追加", new_admin_product_path, class: 'dropdown-item'%>
+            </div>
           </li>
           <li class="nav-item nav-menu-item">
             <%= link_to admin_customers_path, class: 'nav-link text-dark  mr-2' do %>
@@ -83,13 +87,17 @@
           <% end %>
       </div>
       <% else %>
-      <strong class="ml-5">ようこそ、ゲストさん</strong>
+      <strong class="ml-5">ようこそ、<%= link_to "ゲストさん", new_customer_session_path, class: 'text-dark mr-2' %></strong>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 e  ml-auto">
-          <li class="nav-item nav-menu-item">
+          <li class="nav-item nav-menu-item dropdown">
             <%= link_to about_path, class: 'nav-link text-dark mr-2' do %>
               About
             <% end %>
+            <div class="dropdown-menu mypage-dropdown-item">
+              <%= link_to "Nagano Cakeについて", about_path, class: 'dropdown-item'%>
+              <%= link_to "Store", about_path(anchor: "store"), class: 'dropdown-item'%>
+            </div>
           </li>
           <li class="nav-item nav-menu-item">
             <%= link_to products_path, class: 'nav-link text-dark mr-2' do %>
