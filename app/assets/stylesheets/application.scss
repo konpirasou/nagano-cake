@@ -134,3 +134,46 @@ caption {
  .slick-dots li button:before {   //ボタンを大きくする
     font-size: 60px;
      }
+
+// 検索フォームアイコン
+.search-field,
+.search-admin-field{
+  position: relative;
+}
+
+.search-admin-field{
+  position: relative;
+}
+
+.search-icon{
+  position: absolute;
+  left: 80%;
+  top: -15%;
+}
+
+.search-admin-icon{
+  position: absolute;
+  left: 78%;
+  top: 38%;
+}
+
+// ジャンル検索
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.genre-nav{
+  border-top: #E2DCD3 1px solid;
+  border-bottom: #E2DCD3 1px solid;
+}
+
+.genre-item:hover{
+  border-top: #E3C794 2px solid;
+  opacity: 0.8;
+}
+
+.nav-menu-item:hover{
+  border-bottom: #877658 1px solid;
+  margin: 0 auto;
+  justify-content: center;
+}
