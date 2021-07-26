@@ -15,11 +15,13 @@ class Admin::ProductsController < ApplicationController
     @product_sale_count = @product.order_products.sum(:amount)
     @sales_price = @product_sale_count * @product.price
     @sale_data =Product.all_month(@product)
-    @data = {"5" => Comment.review_persent(5, @comments),
-    "4" => Comment.review_persent(4, @comments),
-    "3" => Comment.review_persent(3, @comments),
-    "2" => Comment.review_persent(2, @comments),
-    "1" => Comment.review_persent(1, @comments)}
+    if @comments.present?
+      @data = {"5" => Comment.review_persent(5, @comments),
+      "4" => Comment.review_persent(4, @comments),
+      "3" => Comment.review_persent(3, @comments),
+      "2" => Comment.review_persent(2, @comments),
+      "1" => Comment.review_persent(1, @comments)}
+    end
   end
 
   def new

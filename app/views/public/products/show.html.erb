@@ -35,7 +35,7 @@
        <% end %>
      </div>
    </div>
-
+   <div>
       <% if current_customer %>
         <% if @product.comments.where(customer_id: current_customer.id).blank? %>
           <h4 class="mt-5">レビューを書く</h4>
@@ -69,6 +69,8 @@
             score: <%= @comments.rate %>,
             });
           </script>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
+</div>

@@ -22,8 +22,7 @@
         購入には会員登録が必要になります。
       </p>
     </div>
-
-   <div class="container">
+  <div class="container">
     <div class="row">
       <h3 class="col-12 mt-5 mb-5 text-center">新着情報</h3>
       <% @new_products.each do |product| %>
@@ -40,7 +39,7 @@
       <%= link_to "すべての商品を見る >", products_path %>
     </div>
 
-    <div class="container">
+
     <div class="row">
       <h3 class="col-12 mt-5 mb-5 text-center">人気商品</h3>
       <% @ranking.first(3).each do |rank| %>
