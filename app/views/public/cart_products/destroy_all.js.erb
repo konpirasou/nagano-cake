@@ -1,0 +1,6 @@
+$(".cart-items").html("<%= j(render "index", cart_products: @cart_products, total_price: @total_price) %>");
+$("#total-price").html("<%= j(@total_price.to_s(:delimited)) %>");
+$(".cart-count").html("<%= j(@cart_products.count.to_s) %>");
+$("#notice").html("商品を全て削除しました。");
+$("#alert").html("");
+
