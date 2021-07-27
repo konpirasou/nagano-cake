@@ -39,8 +39,6 @@ $(function() {
   });
 });
 
-
-
 $('head').append(
 '<style>body{display:none;}'  //body {display:none;}を指定して要素を隠す
 );
