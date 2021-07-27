@@ -1,46 +1,45 @@
 <div class="container">
-  <h3 class="bg-light p-3 my-4">商品詳細</h3>
-  <div class="col-sm-12 mx-auto">
-    <div class="row">
-      <div class="col-md-3">
-        <%= attachment_image_tag(@product, :image, :fill, 200, 200) %>
+  <div class="row">
+    <div class="col-6 mt-5">
+      <%= attachment_image_tag @product, :image, :fill, 480, 340 %>
+    </div>
+
+    <div class="col-6 mt-5">
+      <div>
+        <label>商品名</label>
+        <p class="d-inline-block ml-4"><%= @product.name %></p>
       </div>
 
-      <div class="col-md-5">
-        <div>
-          <label>商品名</label>
-          <%= @product.name %>
-        </div>
+      <div>
+        <label>商品説明</label>
+        <p class="d-inline-block ml-4"><%= @product.introduction %></p>
+      </div>
 
-        <div>
-          <label>商品説明</label>
-          <%= @product.introduction %>
-        </div>
+      <div>
+        <label>ジャンル</label>
+        <p class="d-inline-block ml-4"><%= @product.genre.name %></p>
+      </div>
 
-        <div>
-          <label>ジャンル</label>
-          <%= @product.genre.name %>
-        </div>
+      <div>
+        <label>税込価格(税抜価格)</label>
+        <p class="d-inline-block ml-4"><%= @product.price.to_s(:delimited) %>(<%= @product.add_tax_price.to_s(:delimited) %>)</p>
 
-        <div>
-          <label>税込価格<br>(税抜価格)</label>
-          <%= @product.price.to_s(:delimited) %>(<%= @product.add_tax_price.to_s(:delimited) %>)
-        </div>
+      </div>
 
-        <div>
-          <label>販売ステータス</label>
-          <% if @product.is_active == true %>
-            <p class="text-success">販売中</p>
-          <% else %>
-            <p class="text-secondary">販売停止中</p>
-          <% end %>
-        </div>
+      <div>
+        <label>販売ステータス</label>
+        <% if @product.is_active == true %>
+          <p class="text-success">販売中</p>
+        <% else %>
+          <p class="text-secondary">販売停止中</p>
+        <% end %>
+      </div>
 
-        <div class="actions row">
-          <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-success btn-block col-sm-3 offset-sm-3" %>
-        </div>
+      <div class="actions row">
+        <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-success btn-block col-sm-3 offset-sm-3" %>
       </div>
     </div>
+  </div>
 
   <div class="row mt-5 pt-5">
     <div class="col-3 ">
@@ -88,7 +87,7 @@
       </div>
     </div>
   </div>
-<%= paginate @comments %>
+  <%= paginate @comments %>
 </div>
 
 <script>

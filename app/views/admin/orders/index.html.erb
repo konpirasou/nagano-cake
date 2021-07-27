@@ -1,32 +1,38 @@
-<h3 class="bg-light p-3 my-4">注文履歴一覧</h3>
-<div class="col-sm-12 mx-auto">
-  <table class="table col-sm-10 mx-auto">
-    <thead>
-      <tr class="bg-light">
-        <th class="col-sm-3">購入日時</th>
-        <th class="col-sm-3">購入者</th>
-        <th class="col-sm-3">注文個数</th>
-        <th class="col-sm-3">注文ステータス</th>
-      </tr>
-    </thead>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 mx-auto">
+      <h3 class="bg-light p-3 my-4 d-inline-block">注文履歴一覧</h3>
+      <table class="table ml-5">
+        <thead>
+          <tr class="bg-light">
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
 
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td class="col-sm-3">
-            <%= link_to admin_order_path(order) do %>
-              <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-            <% end %>
-          </td>
-          <td class="col-sm-3"><%= order.name %></td>
-          <td class="col-sm-3"><%= order.order_products.count %></td>
-          <td class="col-sm-3"><%= order.status %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td>
+                <%= link_to admin_order_path(order) do %>
+                  <u class="text-secondary">
+                    <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  </u>
+                <% end %>
+              </td>
+              <td><%= order.name %></td>
+              <td><%= order.order_products.count %></td>
+              <td><%= order.status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-  <div>
-    <%= paginate @orders %>
+      <div>
+        <%= paginate @orders, class:"text-center" %>
+      </div>
+    </div>
   </div>
 </div>
