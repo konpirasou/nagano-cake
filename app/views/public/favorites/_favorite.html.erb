@@ -1,0 +1,11 @@
+<% if current_customer.present? %>
+  <% if product.favorited_by?(current_customer) %>
+    <%= link_to product_favorites_path(product), method: :delete, class:"badge badge-pill badge-light pt-2", remote: true do %>
+      <h5><span class="text-danger">♥</span> いいね！</h5>
+    <% end %>
+  <% else %>
+    <%= link_to product_favorites_path(product), method: :post, class:"badge badge-pill badge-light pt-2", remote: true do %>
+      <h5>♡ いいね！</h5>
+    <% end %>
+  <% end %>
+<% end %>
