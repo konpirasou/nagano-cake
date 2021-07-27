@@ -1,36 +1,40 @@
-<div class="col-md-9 mx-auto">
-  <h3 class="bg-light p-3 my-4 d-inline-block">会員一覧</h3>
-  <table class="table ml-5">
-    <tbody>
-      <tr class="bg-light">
-        <th>会員ID</th>
-        <th><u>氏名</u></th>
-        <th>メールアドレス</th>
-        <th>ステータス</th>
-      </tr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 mx-auto">
+      <h3 class="bg-light p-3 my-4 d-inline-block">会員一覧</h3>
+      <table class="table ml-5">
+        <tbody>
+          <tr class="bg-light">
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
 
-      <% @customers.each do |customers| %>
-        <tr>
-          <td><%= customers.id %></td>
-          <td>
-            <%= link_to admin_customer_path(customers.id) do %>
-              <u class="text-secondary">
-                <%= "#{customers.first_name}#{customers.last_name}" %>
-              </u>
-            <% end %>
-          </td>
-          <td><%= customers.email %></td>
-          <% if customers.is_deleted == false %>
-            <td class="text-success">有効</td>
-          <% else %>
-            <td class="text-secondary">退会</td>
+          <% @customers.each do |customers| %>
+            <tr>
+              <td><%= customers.id %></td>
+              <td>
+                <%= link_to admin_customer_path(customers.id) do %>
+                  <u class="text-secondary">
+                    <%= "#{customers.first_name}#{customers.last_name}" %>
+                  </u>
+                <% end %>
+              </td>
+              <td><%= customers.email %></td>
+              <% if customers.is_deleted == false %>
+                <td class="text-success">有効</td>
+              <% else %>
+                <td class="text-secondary">退会</td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div>
-    <%= paginate @customers, class:"text-center" %>
+        </tbody>
+      </table>
+
+      <div>
+        <%= paginate @customers, class:"text-center" %>
+      </div>
+    </div>
   </div>
 </div>
-

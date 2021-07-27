@@ -1,35 +1,47 @@
-<h3 class="bg-light p-3 my-4">商品一覧</h3>
-<h3 class="bg-light p-3 my-4 offset-sm-8"><%= link_to "商品追加", new_admin_product_path %></h3>
-<div class="col-sm-12 mx-auto">
-  <table class=" table col-sm-10 mx-auto">
-    <thead>
-      <tr class="bg-light">
-        <th class="col-sm-2">商品ID</th>
-        <th class="col-sm-3">商品名</th>
-        <th class="col-sm-2">税抜価格</th>
-        <th class="col-sm-3">ジャンル</th>
-        <th class="col-sm-2">ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @products.each do |product| %>
-        <tr>
-          <td class="col-sm-2"><%= product.id %></td>
-          <td class="col-sm-3"><%= link_to product.name, admin_product_path(product) %></td>
-          <td class="col-sm-2"><%= product.price %></td>
-          <td class="col-sm-3"><%= product.genre.name %></td>
-          <td class="col-sm-2">
-            <% if product.is_active == true %>
-              <p class="text-success">販売中</p>
-            <% else %>
-              <p class="text-secondary">販売停止中</p>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div>
-    <%= paginate @products_page, class:"text-center" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 mx-auto">
+      <h3 class="bg-light p-3 my-4 d-inline-block">商品一覧</h3>
+      <h3 class="p-3 my-4 d-inline-block offset-sm-8"><%= link_to "商品追加", new_admin_product_path, class: "btn btn-lg btn-success" %></h3>
+      <table class="table ml-5">
+        <thead>
+          <tr class="bg-light">
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= product.id %></td>
+              <td>
+                <%= link_to admin_product_path(product) do %>
+                  <u class="text-secondary">
+                    <%= product.name %>
+                  </u>
+                <% end %>
+              </td>
+              <td><%= product.price.to_s(:delimited) %></td>
+              <td><%= product.genre.name %></td>
+              <td>
+                <% if product.is_active == true %>
+                  <p class="text-success">販売中</p>
+                <% else %>
+                  <p class="text-secondary">販売停止中</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div>
+        <%= paginate @products_page, class:"text-center" %>
+      </div>
+    </div>
   </div>
 </div>
