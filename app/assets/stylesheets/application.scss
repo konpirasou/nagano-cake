@@ -37,6 +37,7 @@
    position: relative;
    padding-bottom: 120px;
    box-sizing: border-box;
+   margin-top: -24px;
   }
 
   // ヘッダーの設定
@@ -51,9 +52,9 @@
    background-size: cover;
  }
 
-	 .header-logo{
-		font-family: 'Parisienne', cursive;
-	 }
+ .header-logo{
+	font-family: 'Parisienne', cursive;
+ }
 
   // フッターの設定
 
@@ -150,7 +151,8 @@ caption {
   background-size: cover;
   background-position: center;
   height: 95vh;
-  margin-top: -24px;
+  margin-top: -25px;
+
 }
 
 .slick div.img01 {
