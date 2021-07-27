@@ -1,0 +1,1 @@
+$("#likes_buttons_<%= @product.id %>").html("<%= escape_javascript(render 'public/favorites/favorite', product: @product) %>");

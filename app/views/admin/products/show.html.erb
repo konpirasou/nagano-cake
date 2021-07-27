@@ -23,7 +23,6 @@
       <div>
         <label>税込価格(税抜価格)</label>
         <p class="d-inline-block ml-4"><%= @product.price.to_s(:delimited) %>(<%= @product.add_tax_price.to_s(:delimited) %>)</p>
-
       </div>
 
       <div>
