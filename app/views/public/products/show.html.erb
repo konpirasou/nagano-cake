@@ -27,6 +27,7 @@
        <% end %>
      </div>
    </div>
+
    <div class="col-8 mx-auto">
      <% if current_customer %>
         <% if @product.comments.where(customer_id: current_customer.id).blank? %>
@@ -50,8 +51,8 @@
               </div>
               <p class="d-block mt-3"><%= @comments.comment %></p>
           </div>
-         <script>
-           $('#rate').raty({
+          <script>
+            $('#rate').raty({
             size: 20,
             starOff:  '<%= asset_path('star-off.png') %>',
             starOn : '<%= asset_path('star-on.png') %>',
@@ -60,10 +61,10 @@
             readOnly: true,
             score: <%= @comments.rate %>,
             });
-          </script>
-      <% end %>
-    <% end %>
-   </div>
-
-  </div>
+          　　</script>
+        　　<% end %>
+      　　<% end %>
+    　　<% end %>
+  　　　</div>
+　　　　</div>
 </div>
