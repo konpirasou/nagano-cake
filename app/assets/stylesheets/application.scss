@@ -51,9 +51,9 @@
    background-size: cover;
  }
 
- .header-logo{
-  font-family: 'Parisienne', cursive;
- }
+	 .header-logo{
+		font-family: 'Parisienne', cursive;
+	 }
 
   // フッターの設定
 
@@ -135,30 +135,43 @@ caption {
 
 //slickの設定
 
- .slider {
-  max-width: 100%;
-  margin: 0 auto;
-  }
+.slick-dots li button:before {   //ボタンを大きくする
+   font-size: 120px;
+   color: white;
+    }
 
-
- .slider .slick-list{    // 非表示になっている両サイドの画像を表示させる。
-  overflow: hidden;
-  }
-
- .slider img{
-    object-fit: cover;
-    width: 100%;
-    height: 50vw;
-    max-width: 100%;
-    max-height: 100%;
-    background-position: center center;
-    backgroung-size: cover;
+ .slick-dots {
+   bottom: 12%;
+  z-index: +1;
  }
 
- .slick-dots li button:before {   //ボタンを大きくする
-    font-size: 120px;
-    color: white;
-     }
+ .slick div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 95vh;
+  margin-top: -24px;
+}
+
+.slick div.img01 {
+  background-image: url(cheesecake-2598695_1280.jpg);
+  background-size: cover;
+}
+
+.slick div.img02 {
+  background-image: url(blueberry-1082500_1280.jpg);
+  background-size: cover;
+}
+
+.slick div.img03 {
+  background-image: url(breakfast-2151201_1280.jpg);
+  background-size: cover;
+}
+
+.slick div.img04 {
+  background-image: url(dessert-3331009_1280.jpg);
+  background-size: cover;
+}
 
 // 検索フォームアイコン
 .search-field,
@@ -202,6 +215,38 @@ caption {
   margin: 0 auto;
   justify-content: center;
 }
+
+
+ // thanksページの装飾
+
+.ornament h1{
+	position:relative;
+	display:inline-block;
+	padding:24px 64px;
+}
+.ornament h1:before, .ornament h1:after{
+	content:"";
+	display:block;
+	width:50%;
+	height:4px;
+	border-top:1px solid #111;
+	position:absolute;
+	top:0;
+}
+.ornament h1:before{left:-24px;}
+.ornament h1:after{right:-24px;}
+.ornament h1 span{
+	display:block;
+	width:10px;height:10px;
+	border:2px solid #111;
+	-webkit-transform:rotate(45deg);
+	transform:rotate(45deg);
+	position:absolute;
+	top:-4px;
+	left:50%;
+	margin-left:-4px;
+}
+
 
 .mypage-dropdown-item{
  background-color:rgba(248, 249, 250, 0.85);
@@ -259,6 +304,7 @@ caption {
     border-color: #d5172b !important;
   }
 }
+
 
 
 

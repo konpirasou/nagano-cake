@@ -24,17 +24,25 @@
 
 /*global $*/
 
-
 $(function() {
-  $('.slider').slick({
-    dots: true,
-    autoplay:true,
-    autoplaySpeed: 4000,
+  $(".slick").slick({
     arrows: false,
-    centerMode: true,
-    centerPadding: '0px',
-    infinite: true,
-    variableWidth: true,
-
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    speed: 1500,
+    fade: true,
+    pauseOnFocus: false,
+    pauseOnHover: false,
+    pauseOnDotsHover: false,
+    swipe: true,
   });
 });
+
+$('head').append(
+'<style>body{display:none;}'  //body {display:none;}を指定して要素を隠す
+);
+$(window).on("load", function() {
+$('body').delay(600).fadeIn("slow");
+});
+

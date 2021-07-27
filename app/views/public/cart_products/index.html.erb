@@ -4,6 +4,7 @@
     <div class="ml-auto">
       <%= link_to "カートを空にする", destroy_all_path, method: :delete, remote: true, class: "btn btn-danger m-5 block-right" %>
     </div>
+
     <table class="table table-bordered cart-items">
       <%= render "index", cart_products: @cart_products, total_price: @total_price %>
     </table>
