@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-9 mx-auto">
+    <div class="col-md-8 mx-auto">
       <h3 class="bg-light p-3 my-4 d-inline-block">注文履歴一覧</h3>
       <table class="table ml-5">
         <thead>
@@ -23,7 +23,7 @@
                 <% end %>
               </td>
               <td><%= order.name %></td>
-              <td><%= order.order_products.count %></td>
+              <td><%= order.order_products.sum(:amount) %></td>
               <td><%= order.status %></td>
             </tr>
           <% end %>
