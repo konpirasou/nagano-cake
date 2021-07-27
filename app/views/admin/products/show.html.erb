@@ -6,37 +6,36 @@
 
     <div class="col-6 mt-5">
       <div>
-        <label>商品名</label>
-        <p class="d-inline-block ml-4"><%= @product.name %></p>
+        <label class="h5">商品名</label>
+        <p class="d-inline-block ml-4 h5"><%= @product.name %></p>
       </div>
 
       <div>
-        <label>商品説明</label>
-        <p class="d-inline-block ml-4"><%= @product.introduction %></p>
+        <label class="h5">商品説明</label>
+        <p class="d-inline-block ml-4 h5"><%= @product.introduction %></p>
       </div>
 
       <div>
-        <label>ジャンル</label>
-        <p class="d-inline-block ml-4"><%= @product.genre.name %></p>
+        <label class="h5">ジャンル</label>
+        <p class="d-inline-block ml-4 h5"><%= @product.genre.name %></p>
       </div>
 
       <div>
-        <label>税込価格(税抜価格)</label>
-        <p class="d-inline-block ml-4"><%= @product.price.to_s(:delimited) %>(<%= @product.add_tax_price.to_s(:delimited) %>)</p>
-
+        <label class="h5">税込価格(税抜価格)</label>
+        <p class="d-inline-block ml-4 h5"><%= @product.price.to_s(:delimited) %>(<%= @product.add_tax_price.to_s(:delimited) %>)</p>
       </div>
 
       <div>
-        <label>販売ステータス</label>
+        <label class="h5">販売ステータス</label>
         <% if @product.is_active == true %>
-          <p class="text-success">販売中</p>
+          <p class="text-success d-inline-block ml-4 h5">販売中</p>
         <% else %>
-          <p class="text-secondary">販売停止中</p>
+          <p class="text-secondary d-inline-block ml-4 h5">販売停止中</p>
         <% end %>
       </div>
 
       <div class="actions row">
-        <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-success btn-block col-sm-3 offset-sm-3" %>
+        <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-success btn-block mt-4 col-sm-3 offset-sm-3" %>
       </div>
     </div>
   </div>
