@@ -18,8 +18,8 @@
       <h3 class="col-12 mt-5 mb-5 text-center">新着情報</h3>
       <% @new_products.each do |product| %>
         <div class="col-md-6 col-sm-12 text-center">
-          <%= link_to product_path(product.id) do%>
-            <%= attachment_image_tag product, :image, class: "mr-3 w-100 img-responsive" %>
+          <%= link_to product_path(product.id) do %>
+            <%= attachment_image_tag product, :image, :fill, 500, 310, class: "mr-3 w-100 img-responsive" %>
           <% end %>
           <strong><%= product.name %></strong></br>
           <%= "#{product.price.to_s(:delimited)}円" %>

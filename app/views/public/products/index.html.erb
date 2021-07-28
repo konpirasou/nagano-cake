@@ -1,34 +1,35 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-    <div class="genre-nav mt-3">
-      <ul class="nav justify-content-center">
+      <div class="genre-nav mt-3">
+        <ul class="nav justify-content-center">
           <li class="genre-item nav-item p-2"><%= link_to "全商品", products_path, class:"nav-link text-dark" %> </li>
-        <% @genres.each do |genre| %>
+          <% @genres.each do |genre| %>
           <li class="genre-item nav-item p-2"><%= link_to genre.name, products_path(genre_search: genre.id), class:"nav-link text-dark" %> </li>
-        <% end %>
-      </ul>
-    </div>
+          <% end %>
+        </ul>
+      </div>
       <% if params[:genre_search].present? && @products.present? %>
-        <h3 class="m-5"><%= @products.first.genre.name %>一覧<span>(全<%= @products.count %>件)</span></h3>
+        <h3 class="m-5"><%= @products.first.genre.name %>一覧<span>(全<%= @products_count.count %>件)</span></h3>
       <% else %>
-        <h3 class="m-5">商品一覧<span>(全<%= @products.count %>件)</span></h3>
+        <h3 class="m-5">商品一覧<span>(全<%= @products_count.count %>件)</span></h3>
       <% end %>
     </div>
-     <div class="col-12">
-       <ul class="new-products">
-       　　　<% @products.each do |product| %>
-          <li class="col-lg-3 col-md-6 col-sm-12">
-            <%= link_to product_path(product.id) do %>
-             　　<%= attachment_image_tag product, :image, :fill, 250, 170 %>
-              <h6 class="mt-2 text-dark"><%= product.name %></h6>
-            <% end %>
-            <h6 class="mt-2 pb-5">¥<%= product.price %></h6>
-          </li>
+  </div>
+  
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-xl-3 col-md-6 col-sm-12">
+        <%= link_to product_path(product.id) do %>
+        　<%= attachment_image_tag product, :image, :fill, 250, 170 %>
+          <h6 class="mt-2 text-dark"><%= product.name %></h6>
         <% end %>
-      　</ul>
-     </div>
-  　　　</div>
-  <%= paginate @products %>
+        <h6 class="mt-2 pb-5">¥<%= product.price %></h6>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<%= paginate @products %>
+
 

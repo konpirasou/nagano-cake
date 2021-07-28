@@ -5,30 +5,30 @@
       <div class="row text-left">
         <div class="col-sm-12">
           <div>
-            <label class="mr-5 h5">購入者</label>
+            <label class="mr-5 col-2 px-0 h5">購入者</label>
             <%= link_to admin_orders_path(order_sort: @order.customer_id) do %>
               <%= @order.name %>
             <% end %>
           </div>
 
           <div>
-            <label class="mr-5 h5">注文日</label>
+            <label class="mr-5 col-2 px-0 h5">注文日</label>
             <%= @order.created_at.strftime('%Y/%m/%d') %>
           </div>
 
           <div>
-            <label class="mr-5 h5">配送先</label>
+            <label class="mr-5 col-2 px-0 h5">配送先</label>
             <%= "〒#{@order.postal_code}#{@order.address}" %>
           </div>
 
           <div>
-            <label class="mr-5 h5">支払い方法</label>
+            <label class="mr-5 col-2 px-0 h5">支払い方法</label>
             <%= @order.payment_method %>
           </div>
 
-          <div class="form-inline">
-            <label class="mr-5 h5">注文ステータス</label>
-            <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+          <div>
+            <label class="mr-5 col-2 px-0 h5">注文ステータス</label>
+            <%= form_with model: @order, url: admin_order_path(@order), method: :patch, class: "d-inline-block mx-0", local: true do |f| %>
               <%= f.select :status, Order.statuses.keys.to_a, {} %>
               <%= f.submit "変更", class: "btn btn-info" %>
             <% end %>
@@ -55,7 +55,7 @@
                   <td class="col-sm-3"><%= order_product.product.name %></td>
                   <td class="col-sm-2"><%= order_product.product.add_tax_price.to_s(:delimited) %></td>
                   <td class="col-sm-1"><%= order_product.amount %></td>
-                  <td class="col-sm-1"><%= order_product.product.add_tax_price * order_product.amount %></td>
+                  <td class="col-sm-1"><%= (order_product.product.add_tax_price * order_product.amount).to_s(:delimited) %></td>
                   <td class="col-sm-4">
                     <%= form_with model: order_product, url: admin_order_product_path(order_product), method: :patch, local: true do |f| %>
                       <%= f.select :product_status, OrderProduct.product_statuses.keys %>
@@ -70,17 +70,17 @@
 
         <div class="col-md-3">
           <div>
-            <label class="mr-5 h5">商品合計</label>
+            <label class="mr-5 col-6 px-0 h5">商品合計</label>
             <%= @total_price.to_s(:delimited) %>円
           </div>
 
           <div>
-            <label class="mr-5 h5">送料</label>
+            <label class="mr-5 col-6 px-0 h5">送料</label>
             <%= @order.shipping_cost %>円
           </div>
 
           <div>
-            <label class="mr-5 h5">請求金額合計</label>
+            <label class="mr-5 col-6 px-0 h5">請求金額合計</label>
             <%= (@total_price + @order.shipping_cost).to_s(:delimited) %>円
           </div>
         </div>
