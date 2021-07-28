@@ -50,17 +50,18 @@ class Product < ApplicationRecord
     nov = Date.today.beginning_of_year.next_month(10)
     dec = Date.today.beginning_of_year.next_month(11)
 
-    data = {"#{jan.month}月" => product.order_products.where(created_at: jan..feb).sum(:amount),
-      "#{feb.month}月" => product.order_products.where(created_at: feb..mar).sum(:amount),
-      "#{mar.month}月" => product.order_products.where(created_at: mar..apr).sum(:amount),
-      "#{apr.month}月" => product.order_products.where(created_at: apr..may).sum(:amount),
-      "#{may.month}月" => product.order_products.where(created_at: may..jun).sum(:amount),
-      "#{jun.month}月" => product.order_products.where(created_at: jun..aug).sum(:amount),
-      "#{aug.month}月" => product.order_products.where(created_at: aug..sep).sum(:amount),
-      "#{sep.month}月" => product.order_products.where(created_at: sep..oct).sum(:amount),
-      "#{oct.month}月" => product.order_products.where(created_at: oct..nov).sum(:amount),
-      "#{nov.month}月" => product.order_products.where(created_at: nov..dec).sum(:amount),
-      "#{dec.month}月" => product.order_products.where(created_at: dec..dec.end_of_month).sum(:amount)
+    data = {"#{jan.month}月" => product.order_products.where(created_at: jan..feb).sum(:amount),#1月
+      "#{feb.month}月" => product.order_products.where(created_at: feb..mar).sum(:amount),#2月
+      "#{mar.month}月" => product.order_products.where(created_at: mar..apr).sum(:amount),#3月
+      "#{apr.month}月" => product.order_products.where(created_at: apr..may).sum(:amount),#4月
+      "#{may.month}月" => product.order_products.where(created_at: may..jun).sum(:amount),#5月
+      "#{jun.month}月" => product.order_products.where(created_at: jun..jul).sum(:amount),#6月
+      "#{jul.month}月" => product.order_products.where(created_at: jul..aug).sum(:amount),#7月
+      "#{aug.month}月" => product.order_products.where(created_at: aug..sep).sum(:amount),#8月
+      "#{sep.month}月" => product.order_products.where(created_at: sep..oct).sum(:amount),#9月
+      "#{oct.month}月" => product.order_products.where(created_at: oct..nov).sum(:amount),#10月
+      "#{nov.month}月" => product.order_products.where(created_at: nov..dec).sum(:amount),#11月
+      "#{dec.month}月" => product.order_products.where(created_at: dec..dec.end_of_month).sum(:amount)#12月
     }
   end
 
