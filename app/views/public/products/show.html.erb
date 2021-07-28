@@ -51,6 +51,7 @@
                   <span class="ml-5 pl-5"><%= @comments.created_at.strftime("%Y/%m/%d") %></span>
                 </div>
                 <p class="d-block mt-3"><%= @comments.comment %></p>
+                <span><%= link_to "削除する", product_comment_path(@product, @comments), method: :delete %></span>
             </div>
           </div>
 
