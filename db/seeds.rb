@@ -34,3 +34,35 @@ OrderProduct.create!(product_id: 2, order_id: 1, price: 3000, amount: 3, product
 Order.create!(customer_id: 2, postal_code: "0000000", address: "東京都渋谷区渋谷", name: "渋谷次郎", shipping_cost: 800, total_payment: 5000, payment_method: 0, status: 0 )
 OrderProduct.create!(product_id: 1, order_id: 2, price: 2000, amount: 2, product_status: 0)
 OrderProduct.create!(product_id: 2, order_id: 2, price: 3000, amount: 3, product_status: 0)
+
+# 追加
+jan = Date.today.beginning_of_year
+feb = Date.today.beginning_of_year.next_month(1)
+mar = Date.today.beginning_of_year.next_month(2)
+apr = Date.today.beginning_of_year.next_month(3)
+may = Date.today.beginning_of_year.next_month(4)
+jun = Date.today.beginning_of_year.next_month(5)
+jul = Date.today.beginning_of_year.next_month(6)
+Order.create!(customer_id: 1, postal_code: "0000000", address: "東京都渋谷区渋谷", name: "渋谷次郎", shipping_cost: 800, total_payment: 8000, payment_method: 0, status: 0, created_at: jan+1 )
+OrderProduct.create!(product_id: 1, order_id: 3, price: 5000, amount: 5, product_status: 0, created_at: jan+1)
+OrderProduct.create!(product_id: 2, order_id: 3, price: 3000, amount: 3, product_status: 0, created_at: jan+1)
+
+Order.create!(customer_id: 1, postal_code: "0000000", address: "東京都渋谷区渋谷", name: "渋谷次郎", shipping_cost: 800, total_payment: 2000, payment_method: 0, status: 0, created_at: feb+1)
+OrderProduct.create!(product_id: 1, order_id: 4, price: 1000, amount: 1, product_status: 0, created_at: feb+1)
+OrderProduct.create!(product_id: 2, order_id: 4, price: 1000, amount: 1, product_status: 0, created_at: feb+1)
+
+Order.create!(customer_id: 1, postal_code: "0000000", address: "東京都渋谷区渋谷", name: "渋谷次郎", shipping_cost: 800, total_payment: 5000, payment_method: 0, status: 0, created_at: mar+1)
+OrderProduct.create!(product_id: 1, order_id: 5, price: 2000, amount: 2, product_status: 0, created_at: mar+1)
+OrderProduct.create!(product_id: 2, order_id: 5, price: 3000, amount: 3, product_status: 0, created_at: mar+1)
+
+Order.create!(customer_id: 1, postal_code: "0000000", address: "東京都渋谷区渋谷", name: "渋谷次郎", shipping_cost: 800, total_payment: 6000, payment_method: 0, status: 0, created_at: apr+1)
+OrderProduct.create!(product_id: 1, order_id: 6, price: 3000, amount: 3, product_status: 0, created_at: apr+1)
+OrderProduct.create!(product_id: 2, order_id: 6, price: 3000, amount: 3, product_status: 0, created_at: apr+1)
+
+Order.create!(customer_id: 1, postal_code: "0000000", address: "東京都渋谷区渋谷", name: "渋谷次郎", shipping_cost: 800, total_payment: 8000, payment_method: 0, status: 0 , created_at: may+1)
+OrderProduct.create!(product_id: 1, order_id: 7, price: 4000, amount: 4, product_status: 0, created_at: may+1)
+OrderProduct.create!(product_id: 2, order_id: 7, price: 4000, amount: 4, product_status: 0, created_at: may+1)
+
+Order.create!(customer_id: 1, postal_code: "0000000", address: "東京都渋谷区渋谷", name: "渋谷次郎", shipping_cost: 800, total_payment: 10000, payment_method: 0, status: 0 , created_at: jun+1)
+OrderProduct.create!(product_id: 1, order_id: 8, price: 5000, amount: 5, product_status: 0, created_at: jun+1)
+OrderProduct.create!(product_id: 2, order_id: 8, price: 5000, amount: 5, product_status: 0, created_at: jun+1)
