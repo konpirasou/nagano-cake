@@ -1,0 +1,309 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+ @import "slick-theme";
+ @import "slick";
+
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+p, a, h1, h2, h3, h4, h5, span, strong {
+font-family: 'Shippori Mincho B1', serif;
+font-weight: bold;
+}
+
+main {
+padding-top: 90px;
+min-height: 100vh;
+position: relative;
+padding-bottom: 120px;
+box-sizing: border-box;
+margin-top: -24px;
+}
+
+// ヘッダーの設定
+
+.navbar {
+height: 90px;
+position: fixed;
+z-index: 10;
+background-image: url(flowers-3191247_1280.jpg);  // ヘッダー背景画像
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.header-logo{
+font-family: 'Parisienne', cursive;
+}
+
+// フッターの設定
+
+.footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+background-color: #f5f5f5;
+}
+
+.footer-image {
+width: 100%;
+height: 60px;
+background-image: url(flowers-3191247_1280.jpg);  // ヘッダー背景画像
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.footer-logo {
+font-family: 'Parisienne', cursive;
+}
+
+.genre-list li{
+list-style: none;
+margin: 20px 0 20px 0;
+}
+
+.home-image {
+position: relative;
+}
+
+.introduction {
+background-color: white;
+padding: 30px;
+position: absolute;
+top: 22%;
+width: 70%;
+margin-left: 15%;
+}
+
+.welcome-to-nagano-cake {
+background-image: url(flowers-3191247_1280.jpg);  // トップページお店の説明文
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+}
+
+.new-products {
+list-style: none;
+overflow: hidden;
+}
+
+.header-list {
+list-style: none;
+}
+
+.new-products li {
+float: left;
+}
+
+caption {
+caption-side: top;
+}
+
+// kaminari：センター揃え
+.pagination {
+justify-content: center;
+}
+
+// エラーメッセージによるフォームのレイアウト崩れを防ぐ
+.field_with_errors {
+display: contents;
+input {
+@extend .is-invalid;
+}
+}
+
+//slickの設定
+
+.slick-dots li button:before {   //ボタンを大きくする
+font-size: 120px;
+color: white;
+}
+
+.slick-dots {
+bottom: 12%;
+z-index: +1;
+}
+
+.slick div {
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+height: 95vh;
+margin-top: -25px;
+
+}
+
+.slick div.img01 {
+background-image: url(cheesecake-2598695_1280.jpg);
+background-size: cover;
+}
+
+.slick div.img02 {
+background-image: url(blueberry-1082500_1280.jpg);
+background-size: cover;
+}
+
+.slick div.img03 {
+background-image: url(breakfast-2151201_1280.jpg);
+background-size: cover;
+}
+
+.slick div.img04 {
+background-image: url(dessert-3331009_1280.jpg);
+background-size: cover;
+}
+
+// 検索フォームアイコン
+.search-field,
+.search-admin-field{
+position: relative;
+}
+
+.search-admin-field{
+position: relative;
+}
+
+.search-icon{
+position: absolute;
+left: 80%;
+top: -15%;
+}
+
+.search-admin-icon{
+position: absolute;
+left: 78%;
+top: 38%;
+}
+
+// ジャンル検索
+.dropdown:hover>.dropdown-menu {
+display: block;
+}
+
+.genre-nav{
+border-top: #E2DCD3 1px solid;
+border-bottom: #E2DCD3 1px solid;
+}
+
+.genre-item:hover{
+border-top: #E3C794 2px solid;
+opacity: 0.8;
+}
+
+.nav-menu-item:hover{
+border-bottom: #877658 1px solid;
+margin: 0 auto;
+justify-content: center;
+}
+
+
+// thanksページの装飾
+
+.ornament h1{
+position:relative;
+display:inline-block;
+padding:24px 64px;
+}
+.ornament h1:before, .ornament h1:after{
+content:"";
+display:block;
+width:50%;
+height:4px;
+border-top:1px solid #111;
+position:absolute;
+top:0;
+}
+.ornament h1:before{left:-24px;}
+.ornament h1:after{right:-24px;}
+.ornament h1 span{
+display:block;
+width:10px;height:10px;
+border:2px solid #111;
+-webkit-transform:rotate(45deg);
+transform:rotate(45deg);
+position:absolute;
+top:-4px;
+left:50%;
+margin-left:-4px;
+}
+
+
+.mypage-dropdown-item{
+background-color:rgba(248, 249, 250, 0.85);
+}
+
+
+// bootstrapのボタンの角丸を変更
+.alert,
+.btn,
+.form-control {
+border-radius: 0.125rem;
+}
+
+// bootstrapのボタン色を変更
+.btn-primary {
+background-color: #5d9cec !important;
+border-color: #468ee9 !important;
+&:hover {
+background-color: #2f80e7 !important;
+border-color: #196ed9 !important;
+}
+}
+
+.btn-success {
+background-color: #a0d468 !important;
+border-color: #94ce54 !important;
+&:hover {
+background-color: #87c940 !important;
+border-color: #75b233 !important;
+}
+}
+.btn-info {
+background-color: #22b1e3 !important;
+border-color: #199bc8 !important;
+&:hover {
+background-color: #22b1e3 !important;
+border-color: #199bc8 !important;
+}
+}
+
+.btn-warning {
+background-color: #ffce54 !important;
+border-color: #ffc73a !important;
+&:hover {
+background-color: #ffbf21 !important;
+border-color: #fcb400 !important;
+}
+}
+
+.btn-danger {
+background-color: #ed5565 !important;
+border-color: #eb3e50 !important;
+&:hover {
+background-color: #e8273b !important;
+border-color: #d5172b !important;
+}
+}
+

@@ -1,2 +1,28 @@
-<h1>Public::CartProducts#index</h1>
-<p>Find me in app/views/public/cart_products/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h4 class="bg-light p-3 my-5">ショッピングカート</h4>
+    <div class="ml-auto">
+      <%= link_to "カートを空にする", destroy_all_path, method: :delete, remote: true, class: "btn btn-danger m-5 block-right" %>
+    </div>
+
+    <table class="table table-bordered cart-items">
+      <%= render "index", cart_products: @cart_products, total_price: @total_price %>
+    </table>
+
+    <div class="col-8">
+     <%= link_to "買い物を続ける", root_path, class: "btn btn-primary m-6 block-right" %>
+    </div>
+
+    <table class="table table-bordered text-center col-4 ml-auto">
+      <tr>
+        <th>合計金額</th>
+        <td id="total-price"><%= @total_price.to_s(:delimited) %></td>
+      </tr>
+    </table>
+
+    <div class="col-12 text-center">
+      <%= link_to "情報入力にすすむ", new_order_path, class: "btn btn-success m-5 p-3 block-right" %>
+    </div>
+  </div>
+</div>
+

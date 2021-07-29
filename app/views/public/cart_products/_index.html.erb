@@ -1,0 +1,31 @@
+
+  <thead>
+    <tr>
+      <th scope="col">商品名</th>
+      <th scope="col">単価(税込)</th>
+      <th scope="col">数量</th>
+      <th scope="col">小計</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <% cart_products.each do |cart_product| %>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to product_path(cart_product.product.id), class:"text-dark" do %>
+          <%= attachment_image_tag cart_product.product, :image, :fill, 70, 45, class: "mr-3" %><%= cart_product.product.name %>
+        <% end %>
+      </td>
+      <td><%= cart_product.product.price.to_s(:delimited) %>(<%= cart_product.product.add_tax_price.to_s(:delimited) %>)</td>
+      <td>
+         <%= form_with model: cart_product, url: cart_product_path(cart_product), method: :patch, remote: true do |f| %>
+            <%= f.number_field :amount, in: 1..5, value: cart_product.amount %>
+            <%= f.submit "変更", class: "btn btn-info" %>
+         <% end %>
+      </td>
+      <td><%= (cart_product.product.add_tax_price * cart_product.amount).to_s(:delimited) %></td>
+      <td><%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, remote: true, class: "btn btn-danger m-6", id:"cart-destroy-#{cart_product.product.id}" %></td>
+    </tr>
+  </tbody>
+  <% end %>
+

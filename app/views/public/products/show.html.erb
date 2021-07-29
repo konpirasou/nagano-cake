@@ -1,2 +1,84 @@
-<h1>Public::Products#show</h1>
-<p>Find me in app/views/public/products/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mt-5">
+      <%= attachment_image_tag @product, :image, :fill, 480, 340 %>
+    </div>
+    <div class="col-6 mt-5">
+      <h4 class="mb-3"><%= @product.name %></h4>
+      <p><%= @product.introduction %></p>
+         <h4><%= @product.add_tax_price.to_s(:delimited) %>(税込)</h4>
+         <%= form_with model: @cart_product, url: cart_products_path, class: "p-4 mt-5", local: true do |f| %>
+           <%= f.select :amount, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], include_blank: "個数選択" %>
+           <%= f.hidden_field :product_id, :value => @product.id %>
+           <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
+         <% end %>
+     <div id="likes_buttons_<%= @product.id%>">
+       <%= render 'public/favorites/favorite', product: @product %>
+     </div>
+     <div class="mt-3">
+       <%= link_to "https://twitter.com/share?url=#{ request.url }&text=ながのCAKEの#{ @product.name }はいいぞ&hashtags=nagano_cake", target: '_blank', rel: 'nofollow noopener noreferrer' do %>
+         <i class="fab fa-twitter-square fa-4x btn btn-default" style="color:#1DA1F2"></i>
+       <% end %>
+       <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{ request.url }", target: '_blank', rel: 'nofollow noopener noreferrer' do %>
+         <i class="fab fa-facebook-square fa-4x btn btn-default" style="color:#3B5998"></i>
+       <% end %>
+       <%= link_to "https://social-plugins.line.me/lineit/share?url={ request.url }", target: '_blank', rel: 'nofollow noopener noreferrer' do %>
+         <i class="fab fa-line fa-4x btn btn-default" style="color:#00B900"></i>
+       <% end %>
+     </div>
+   </div>
+
+   <div class="col-8 mx-auto">
+     <% if current_customer %>
+        <% if @product.comments.where(customer_id: current_customer.id).blank? %>
+          <h4 class="mt-5">レビューを書く</h4>
+          <%= form_with(model:[@product, @comment], local: true) do |f| %>
+            <%= f.text_field :title, placeholder: "タイトル", class:"mt-2 form-control" %></br>
+            <div class="form-group" id="star">
+              <% f.label :rate %>
+              <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
+            </div>
+            <%= f.text_area :comment, rows:'3',placeholder: "コメントをここに", class:"form-control" %>
+            <%= f.submit "送信する", class:"btn btn-success mt-3" %>
+          <% end %>
+        <% else %>
+          <div class="mt-5">
+            <h4>レビューありがとうございました</h4>
+            <div class="my-2">
+                <h4 class="mt-5"><%= @comments.title %></h4>
+                <div class="d-inline-block">
+                  <span class="ml-2" id="rate"></span>
+                  <span class="ml-5 pl-5"><%= @comments.created_at.strftime("%Y/%m/%d") %></span>
+                </div>
+                <p class="d-block mt-3"><%= @comments.comment %></p>
+            </div>
+          </div>
+
+          <script>
+            $('#rate').raty({
+            size: 20,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @comments.rate %>,
+            });
+          　</script>
+        <% end %>
+    　<% end %>
+  　</div>
+　</div>
+</div>
+
+
+<script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'comment[rate]',
+    half: false,
+  });
+</script>

@@ -1,2 +1,15 @@
-<h1>Public::Customers#cancel</h1>
-<p>Find me in app/views/public/customers/cancel.html.erb</p>
+<div class="col-sm-8 mx-auto my-5">
+  <h3 class="text-center py-3 my-4">本当に退会しますか？</h3>
+    <div class="text-center">
+      <p>
+        退会すると、会員登録情報や</br>
+        これまでの購入履歴が閲覧できなくなります。</br>
+        退会する場合は、「退会する」をクリックしてください。
+      </p>
+    </div>
+
+    <div class="text-center">
+      <%= link_to "退会しない", customers_my_page_path, class: "btn btn-primary col-sm-2 p-2 mt-3" %>
+      <%= link_to "退会する", customers_my_page_cancel_path, method: :patch, class: "btn btn-danger col-sm-2 offset-sm-1 p-2 mt-3" %>
+    </div>
+</div>

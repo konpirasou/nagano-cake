@@ -1,2 +1,68 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="bg-light p-3 my-4 d-inline-block">注文情報入力</h4>
+      <%= form_with model: @order, url: orders_confirm_path, method: :post, id: 'edit_product', class: 'edit_product form-horizontal', local: true do |f| %>
+    
+        <h5 class="col-12">支払方法</h5>
+        <div class="form-check ml-3 mt-4">
+          <div>
+            <%= f.radio_button :payment, :"0", checked: "checked" %>
+            <%= label :payment, "クレジットカード" %>
+          </div>
+          <div>
+            <%= f.radio_button :payment, :"1" %>
+            <%= f.label :payment, "銀行振込" %>
+          </div>
+        </div>
+    
+        <h5 class="col-12">お届け先</h5>
+        <div class="form-check ml-3 mt-4">
+          <div>
+            <%= f.radio_button :address_select, :"0", checked: "checked" %>
+            <%= f.label :address, "ご自身の住所"%>
+          </div>
+          <div class="ml-3">
+            <%= "#{current_customer.postal_code} #{current_customer.address}" %></br>
+            <%= "#{current_customer.first_name}#{current_customer.last_name}" %>
+          </div>
+        </div>
+        <div class="form-check ml-3 mt-4">
+          <div>
+            <%= f.radio_button :address_select, :"1" %>
+            <%= f.label :address, "登録済住所から選択" %>
+          </div>
+          <div class="field form-group row ml-3">
+            <%= f.collection_select :address_selected, @addresses, :id, :full_address %>
+          </div>
+        </div>
+        <div class="form-check ml-3 mt-4">
+          <div>
+            <%= f.radio_button :address_select, :"2" %>
+            <%= f.label :address, "新しいお届け先" %>
+          </div>
+          <div class="ml-3">
+            <div class="col-sm-12 mx-auto">
+              <div class="field form-group row">
+                <%= f.label :"郵便番号（ハイフンなし）", class: "col-sm-4 control-label" %>
+                <%= f.text_field :postal_code, autofocus: true, placeholder: "0000000", class: "col-sm-2" %>
+              </div>
+              <div class="field form-group row">
+                <%= f.label :"住所", class: "col-sm-4 control-label" %>
+                <%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木神園町0-0", class: "col-sm-5" %>
+              </div>
+              <div class="field form-group row">
+                <%= f.label :"宛名", class: "col-sm-4 control-label" %>
+                <%= f.text_field :name, autofocus: true, placeholder: "令和道子", class: "col-sm-2" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= f.submit "確認画面へ進む", class:"btn btn-primary offset-5" %>
+      <% end %>
+        <div class="text-center">
+    
+       </div>
+    </div>
+  </div>
+</div>

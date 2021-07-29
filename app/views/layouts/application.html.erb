@@ -2,14 +2,22 @@
 <html>
   <head>
     <title>NaganoCake</title>
+    <%= favicon_link_tag('favicon.ico') %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Sacramento&display=swap');</style>
   </head>
 
   <body>
-    <%= yield %>
+
+    <%= render 'layouts/header' %>
+    　　<main>
+       <%= yield %>
+       <%= render 'layouts/footer' %>
+     </main>
   </body>
 </html>

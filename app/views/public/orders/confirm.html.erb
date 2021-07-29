@@ -1,2 +1,86 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+     <div class="col-8">
+      <h4 class="bg-light p-3 my-4 d-inline-block">注文情報確認</h4>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-secondary">
+            <th scope="col">商品名</th>
+            <th scope="col">単価(税込)</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_products.each do |cart_product| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag cart_product.product, :image, :fill, 70, 45, class: "mr-3" %>
+              <%= cart_product.product.name %>
+            </td>
+            <td><%= cart_product.product.add_tax_price.to_s(:delimited) %></td>
+            <td><%= cart_product.amount %></td>
+            <td><%= (cart_product.product.add_tax_price * cart_product.amount).to_s(:delimited) %></td>
+       　  </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-4">
+      <h4 class="p-3 my-4 d-inline-block"></h4>
+      <table class="table table-bordered mt-4">
+        <tr>
+          <th class="table-secondary">送料</th>
+          <td><%= @order.shipping_cost %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary">商品合計</th>
+          <td><%= @total_price.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary">請求金額</th>
+          <td><%= @order.total_payment %></td>
+        </tr>
+      </table>
+    </div>
+
+      <h5 class="col-3">支払い方法</h5>
+      <p class="col-3">
+        <%= @order.payment_method %>
+      </p>
+      <div class="col-6"></div>
+      <h5 class="col-3">お届け先</h5>
+      <p class="col-3">
+        <%= "#{@order.postal_code} #{@order.address}" %></br>
+        <%= "#{@order.name}" %>
+      </p>
+    <%= form_with model: @order, url: orders_path, method: :post, class: 'edit_product form-horizontal', local: true do |f| %>
+      <%= f.hidden_field :customer_id, value: current_customer.id %>
+      <%= f.hidden_field :postal_code, value: @order.postal_code %>
+      <%= f.hidden_field :address, value: @order.address %>
+      <%= f.hidden_field :name, value: @order.name %>
+      <%= f.hidden_field :shipping_cost, value: @order.shipping_cost %>
+      <%= f.hidden_field :total_payment, value: @order.total_payment %>
+      <%= f.hidden_field :payment_method, value: @order.payment_method %>
+      <% if @order.payment_method == "銀行振込" %>
+        <%= f.submit "注文を確定する", class: "btn btn-success m-4 p-2 block-right" %>
+      <% elsif @order.payment_method == "クレジットカード" %>
+        <script
+          type="text/javascript"
+          src="https://checkout.pay.jp/"
+          class="payjp-button"
+          data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>"
+          data-text="カード情報を入力する"
+          data-submit-text="注文を確定する">
+          <% f.submit %>
+        </script>
+      <% end %>
+
+    <% end %>
+  </div>
+</div>
+
+
+

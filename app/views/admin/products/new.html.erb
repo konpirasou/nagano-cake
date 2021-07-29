@@ -1,2 +1,52 @@
-<h1>Admin::Products#new</h1>
-<p>Find me in app/views/admin/products/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 mx-auto">
+      <h3 class="bg-light p-3 my-4 d-inline-block">商品新規登録</h3>
+      <%= form_with model: @product, url: admin_products_path, id: 'new_product', class: 'new_product form-horizontal', local: true do |f| %>
+        <%= render "public/customers/shared/error_messages", resource: @product %>
+
+        <div class="field form-group row">
+          <%= f.label :"商品画像", class: "col-md-3 control-label h5" %>
+          <%= f.attachment_field :image, class: "col-md-5 form-control-file user_image" %>
+        </div>
+
+        <div class="field form-group row">
+          <%= f.label :"商品名", class: "col-md-3 control-label h5" %>
+          <%= f.text_field :name, placeholder: "商品名", autofocus: true, class: "col-md-5" %>
+        </div>
+
+        <div class="field form-group row">
+          <%= f.label :"商品説明", class: "col-md-3 control-label h5" %>
+          <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", size: "20x10", class: "col-md-5" %>
+        </div>
+
+        <div class="field form-group row">
+          <%= f.label :"ジャンル", class: "col-md-3 control-label h5" %>
+          <%= f.collection_select :genre_id, @genres, :id, :name %>
+        </div>
+
+        <div class="field form-group row">
+          <%= f.label :"販売価格", class: "col-md-3 control-label h5" %>
+          <%= f.text_field :price, placeholder: "1000", class: "col-md-5" %><p class="mt-3 ml-2 h5">円</p>
+        </div>
+
+        <div class="field form-group row">
+          <%= f.label :"販売ステータス", class: "col-md-3 control-label h5" %>
+          <div>
+            <%= f.radio_button :is_active, true %>
+            <%= f.label :is_active, "販売中", value: true %>
+          </div>
+          <div>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, "販売停止中", value: false %>
+          </div>
+        </div>
+
+        <div class="actions row">
+          <%= f.submit "新規登録", class: "btn btn-success btn-block col-md-3 offset-md-3" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+$(".cart-items").html("<%= j(render "index", cart_products: @cart_products, total_price: @total_price) %>");
+$("#total-price").html("<%= j(@total_price.to_s(:delimited)) %>");
+$("#notice").html("商品の数量を変更しました。");
+$("#alert").html("");
+
