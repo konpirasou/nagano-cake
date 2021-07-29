@@ -1,6 +1,9 @@
 # README
+#　注意点
+* bundle installする際は、```bundle install --without production```で実行してください。本番環境のmysqlがインストールされてしまうためです。
+* また、マスタデータは```seeds.rb```ファイルに記述しております。```rails db:seed:migarte```を実行することで、管理者や商品などのデータが一通り作成されます。
 
-This README would normally document whatever steps are necessary to get the
+<!-- This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
@@ -22,3 +25,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+ -->
