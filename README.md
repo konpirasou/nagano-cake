@@ -3,6 +3,12 @@
 * bundle installする際は、```bundle install --without production```で実行してください。本番環境のmysqlがインストールされてしまうためです。
 * また、初期のマスタデータは```seeds.rb```ファイルに記述しております。```rails db:seed```を実行することで、管理者や商品などのデータが一通り作成されます。
 
+# 管理者ユーザー
+admin@mail.com/password
+# 会員ユーザー
+test1@mail.com/password
+
+
 <!-- This README would normally document whatever steps are necessary to get the
 application up and running.
 
